@@ -30,6 +30,7 @@ export {
   type BubbleItem,
   type CheckItem,
   type CircleItem,
+  type CrossItem,
   type DividerItem,
   type FrameItem,
   type HighlightItem,
@@ -91,6 +92,22 @@ export {
   type CandlestickChartProps,
   type CandlestickDatum,
 } from "./CandlestickChart";
+export {
+  NumberCounter,
+  numberCounterDuration,
+  formatNumberCounter,
+  type NumberCounterProps,
+  type NumberCounterFormat,
+} from "./NumberCounter";
+export {
+  MoneyFlow,
+  moneyFlowDuration,
+  getMoneyFlowConnectionPoint,
+  type MoneyFlowProps,
+  type MoneyFlowNode,
+  type MoneyFlowConnection,
+  type MoneyFlowPoint,
+} from "./MoneyFlow";
 export {
   SpeechBubble,
   ThoughtBubble,
