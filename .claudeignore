@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+bower_components/
+vendor/
+
+# Build and generated output
+dist/
+build/
+out/
+renders/
+coverage/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+.turbo/
+.cache/
+.parcel-cache/
+.vite/
+.remotion/
+
+# Repository and tool metadata
+.git/
+.codebase-memory/
+.claude/
+.vscode/
+.idea/
+
+# Package-manager caches
+.pnpm-store/
+.npm/
+.yarn/
+.rush/
+
+# Large vendored/generated directories
+whisper.cpp/
+tmp/
+temp/
+
+# Logs and local environment files
+*.log
+.env
+.env.*
+!.env.example
+
+# Source-control and OS noise
+.DS_Store
+Thumbs.db
+
+# Large media and binary artifacts
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+*.wav
+*.mp3
+*.ogg
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+*.iso
+*.wasm
+*.bin
