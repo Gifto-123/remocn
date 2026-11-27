@@ -14,18 +14,18 @@ export const SCENE3_DURATION = 3201;
 
 const img = (name: string) => staticFile(`assets/scene3/${name}`);
 const IMG = {
-  scale: img("Balance_scale_weighing_thumbs-up…_2afcf4a5.jpg"),
-  chair: img("Executive_chair_with_suit_jacket_502be98b.jpg"),
-  gift: img("Gift_box_revealing_price_tag_98744969.jpg"),
-  rocket: img("Gold_coins_and_rocket_arrow_9130cee3.jpg"),
-  deal: img("Handshake_over_business_acquisit…_3e20fa97.jpg"),
-  mag: img("Magnifying_glass_examining_finan…_bfe3b30d.jpg"),
-  peak: img("Red_arrow_sliding_mountain_peak_32b04ed5.jpg"),
-  scissors: img("Scissors_splitting_price_tag_ad56a503.jpg"),
-  exit: img("Stock_certificates_exiting_door_cdbb58d6.jpg"),
-  split: img("Stock_split_illustration_bf153656.jpg"),
-  chip: img("Timing_chip_with_server_rack_0069daf7.jpg"),
-  timeline: img("Vertical_timeline_calendar_tiles…_c423e09d.jpg"),
+  scale: img("Balance_scale_with_icons_bd072e08.jpg"),
+  chair: img("Executive_chair_in_dark_office_23ab1169.jpg"),
+  gift: img("Gift_box_revealing_price_tag_b542c92b.jpg"),
+  rocket: img("Gold_coin_bar_chart_rising_f7fbea32.jpg"),
+  deal: img("Two_hands_shaking_across_table_e685ce8f.jpg"),
+  mag: img("Magnifying_glass_examining_incom…_feadd80e.jpg"),
+  peak: img("Stock_price_line_climbing_peak_cc8aac2b.jpg"),
+  scissors: img("Scissors_cutting_price_tag_4acfb5bc.jpg"),
+  exit: img("Stock_certificates_flying_throug…_54800ffd.jpg"),
+  split: img("Stock_certificate_splitting_into…_95d7103a.jpg"),
+  chip: img("Timing_chip_on_circuit_board_09fb2b04.jpg"),
+  timeline: img("Vertical_timeline_with_blank_tiles_8eef685b.jpg"),
 } as const;
 
 /* Hand plans. `at` = beat-local frame the pen touches paper = (word start s × 30) − beat start. */

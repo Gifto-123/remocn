@@ -14,15 +14,15 @@ export const SCENE2_DURATION = 1382;
 
 const img = (name: string) => staticFile(`assets/scene2/${name}`);
 const IMG = {
-  cal: img("Calendar_page_with_expired_stamp_c40bd9f1.jpg"),
-  corn: img("Canned_corn_illustration_60f77f0e.jpg"),
-  clip: img("Clipboard_checklist_illustration_771b6398.jpg"),
-  flash: img("Flash_card_and_portable_SSD_782c852e.jpg"),
-  mag: img("Magnifying_glass_inspecting_offi…_79bcbc29.jpg"),
-  scissors: img("Scissors_cutting_ten_dollar_bill_3f42cb1d.jpg"),
-  chip: img("Semiconductor_microchip_on_coin_…_1452c7a5.jpg"),
-  jet: img("Small_passenger_jet_taking_off_96383f44.jpg"),
-  video: img("Video_player_illustration_on_laptop_c12d38f5.jpg"),
+  cal: img("Red_ink_stamp_on_calendar_b72fb43d.jpg"),
+  corn: img("Steel_cans_spilling_sweet_corn_16e675b8.jpg"),
+  clip: img("Metal_clipboard_with_corporate_c…_dafb5b34.jpg"),
+  flash: img("Memory_card_and_portable_SSD_8e03bb5b.jpg"),
+  mag: img("Magnifying_glass_examining_stock…_2454c758.jpg"),
+  scissors: img("Scissors_cutting_banknote_into_h…_b58b96f0.jpg"),
+  chip: img("Microchip_on_gold_coin_dd52dd84.jpg"),
+  jet: img("Passenger_jet_lifting_off_runway_ff58b1f1.jpg"),
+  video: img("Laptop_on_desk_displaying_video_2202da56.jpg"),
 } as const;
 
 /* Hand plans. `at` = beat-local frame the pen touches paper (narration-locked). */

@@ -28,16 +28,16 @@ export const SCENE1_DURATION = 1230;
 const TAIL = 8;
 
 const IMG = {
-  books: "Academic_books_and_rolled_chart_85864bf2.jpg",
-  trap: "Bear_trap_under_leaves_bait_31cc3dba.jpg",
-  chained: "Chained_stock_certificate_with_g…_0636d49b.jpg",
-  court: "Courthouse_building,_gavel,_and_…_57f0de57.jpg",
-  magnifier: "Magnifying_glass_over_filing_doc…_541b451b.jpg",
-  upArrow: "Stock_certificate_with_up_arrow_33045a1a.jpg",
-  thumb: "Stock_certificates_video_thumbna…_c22e2055.jpg",
-  questions: "Two_stock_certificates_with_ques…_bd28e4ba.jpg",
-  timer: "Vintage_countdown_timer_illustra…_22aafcae.jpg",
-  calendar: "Wall_calendar_page_with_November_a0d13697.jpg",
+  books: "Stack_of_annual_reports_and_2444a9d8.jpg",
+  trap: "Steel_bear_trap_with_coin_a8adcb1d.jpg",
+  chained: "Legal_injunction_document_with_p…_5c672db9.jpg",
+  court: "Stone_courthouse_facade_at_dusk_6f23690d.jpg",
+  magnifier: "Magnifying_glass_over_corporate_…_ed6a627e.jpg",
+  upArrow: "Stock_certificate_with_upward_arrow_7f5e409e.jpg",
+  thumb: "Two_stock_certificates_side_by_e3594ad5.jpg",
+  questions: "Vintage_stock_certificates_disso…_b9d49bd1.jpg",
+  timer: "Countdown_clock_dissolving_into_…_79910659.jpg",
+  calendar: "Pen_resting_on_desk_calendar_41d5d9dd.jpg",
 } as const;
 
 /** Image drawn by the hand. Timing comes from planHand. */
