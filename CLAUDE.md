@@ -35,6 +35,27 @@
 - Prefer an image over a label. Never label what an image already shows.
 - Cut text by deleting its `planHand()` slot; keep remaining `at` values; re-center the layout and re-check overlap rules.
 
+## Visual type rules (mandatory)
+
+Every beat uses exactly one of four visual types. Classify each beat from its narration before choosing assets or components. No other types.
+
+### A. Cinematic financial imagery
+
+- Use for: hooks, company introductions, market crashes, economic events, storytelling.
+
+### B. Animated financial data
+
+- Use for: stock movements, revenue, earnings, market capitalization, comparisons, statistics.
+- Build with chart/data primitives from `src/whiteboard/`.
+
+### C. Editorial illustrations
+
+- Use for abstract concepts: inflation, institutional investors, market manipulation, economic pressure.
+
+### D. Evidence and documentary visuals
+
+- Use for: headlines, company filings, financial reports, news events, historical evidence.
+
 # Remocn
 
 Remotion + React + TypeScript video project. Keep repository exploration focused on `src/` and `public/assets/`.
