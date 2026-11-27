@@ -30,7 +30,6 @@ export {
   type BubbleItem,
   type CheckItem,
   type CircleItem,
-  type CrossItem,
   type DividerItem,
   type FrameItem,
   type HighlightItem,
@@ -84,6 +83,14 @@ export {
   type HandLineChartProps,
   type LineSeries,
 } from "./Charts";
+export {
+  CandlestickChart,
+  candlestickChartDuration,
+  buildCandlestickChartGeometry,
+  type CandlestickChartGeometry,
+  type CandlestickChartProps,
+  type CandlestickDatum,
+} from "./CandlestickChart";
 export {
   SpeechBubble,
   ThoughtBubble,
