@@ -21,6 +21,13 @@ import {
   SCENE3_HEIGHT,
   SCENE3_WIDTH,
 } from "./compositions/scene3";
+import {
+  Scene4,
+  SCENE4_DURATION,
+  SCENE4_FPS,
+  SCENE4_HEIGHT,
+  SCENE4_WIDTH,
+} from "./compositions/scene4";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -48,6 +55,14 @@ export const RemotionRoot: React.FC = () => {
         fps={SCENE3_FPS}
         width={SCENE3_WIDTH}
         height={SCENE3_HEIGHT}
+      />
+      <Composition
+        id="Scene4"
+        component={Scene4}
+        durationInFrames={SCENE4_DURATION}
+        fps={SCENE4_FPS}
+        width={SCENE4_WIDTH}
+        height={SCENE4_HEIGHT}
       />
     </>
   );
