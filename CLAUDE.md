@@ -19,6 +19,14 @@
 - Images must use the hand. Never set `showHand={false}` to fix overlap; fix the hand plan.
 - Fix every `[handPlan]` console warning before finishing the scene.
 
+## Layout rules (mandatory)
+
+- `Pic` occupies a `size × size` square; its tinted background is visible. No text or other element may enter that box: text `x ≥ pic.x + size + 40`, or text right edge `≤ pic.x − 40`.
+- Text width ≈ `0.7 × fontSize × chars` (Manrope 800 caps). Keep right edge `≤ 1880`.
+- Stacked lines: next `y ≥ prev y + 1.2 × prev fontSize`.
+- Side-by-side columns around a centered `Pic`: size the `Pic` so columns clear its box by 40px.
+- Before finishing, check each beat's final frame in Studio; fix overlap by moving `x`/`y`/`size`, never by hiding the hand.
+
 # Remocn
 
 Remotion + React + TypeScript video project. Keep repository exploration focused on `src/` and `public/assets/`.
