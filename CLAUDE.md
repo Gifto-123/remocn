@@ -12,6 +12,13 @@
 - Implement the scene at `src/compositions/<scene>.tsx`, then register it in `src/Root.tsx`.
 - Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active scene.
 
+## Hand rules (mandatory)
+
+- One hand per scene. Route all pen actions—images, text, and annotations—through `planHand()`; never hardcode `delay` on a hand element.
+- Derive `at` from the scene JSON word start: `(seconds × 30) - beat start`.
+- Images must use the hand. Never set `showHand={false}` to fix overlap; fix the hand plan.
+- Fix every `[handPlan]` console warning before finishing the scene.
+
 # Remocn
 
 Remotion + React + TypeScript video project. Keep repository exploration focused on `src/` and `public/assets/`.

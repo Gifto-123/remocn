@@ -221,3 +221,4 @@ export {
 // fonts.ts is NOT re-exported on purpose: it needs @remotion/google-fonts.
 
 export {RoundedFrame, roundedFrameDuration, type RoundedFrameProps} from "./RoundedFrame";
+export {planHand, type HandSlot, type PlannedSlot} from "./handPlan";
