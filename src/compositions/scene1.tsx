@@ -91,12 +91,9 @@ const Beat: React.FC<{from: number; to: number; last?: boolean; children: React.
 const A = planHand(
   {
     thumb: {at: 6, draw: 26},
-    four: {at: 40, draw: 16},
-    splits: {at: 64, draw: 18},
+    splits: {at: 40, draw: 36},
     buy: {at: 90, draw: 20},
     under: {at: 118, draw: 12},
-    l1: {at: 138, draw: 30},
-    l2: {at: 176, draw: 22},
   },
   {label: "scene1/A", limit: 214},
 );
@@ -104,8 +101,7 @@ const B = planHand(
   {
     problem: {at: 8, draw: 22},
     calendar: {at: 48, draw: 28},
-    date: {at: 84, draw: 40},
-    filings: {at: 141, draw: 20},
+    date: {at: 84, draw: 32},
     magnifier: {at: 169, draw: 20},
   },
   {label: "scene1/B", limit: 195},
@@ -114,9 +110,7 @@ const C = planHand(
   {
     four: {at: 6, draw: 10},
     strike: {at: 24, draw: 16},
-    fwd: {at: 48, draw: 22},
     cert: {at: 78, draw: 26},
-    us: {at: 108, draw: 18},
     one: {at: 134, draw: 8},
     circle: {at: 150, draw: 12},
   },
@@ -125,8 +119,7 @@ const C = planHand(
 const D = planHand(
   {
     chained: {at: 12, draw: 24},
-    title: {at: 44, draw: 30},
-    waiting: {at: 84, draw: 28},
+    title: {at: 44, draw: 24},
     frozen: {at: 140, draw: 14},
     court: {at: 158, draw: 22},
   },
@@ -143,9 +136,7 @@ const E = planHand(
 const F = planHand(
   {
     trap: {at: 47, draw: 24},
-    trapT: {at: 79, draw: 10},
     books: {at: 130, draw: 24},
-    resT: {at: 162, draw: 14},
     buy: {at: 184, draw: 30},
     under: {at: 222, draw: 10},
   },
@@ -153,11 +144,9 @@ const F = planHand(
 );
 const G = planHand(
   {
-    stay: {at: 8, draw: 20},
     img: {at: 36, draw: 24},
-    which: {at: 66, draw: 12},
-    would: {at: 86, draw: 12},
-    trust: {at: 106, draw: 10},
+    which: {at: 66, draw: 14},
+    trust: {at: 86, draw: 28},
     under: {at: 124, draw: 10},
   },
   {label: "scene1/G", limit: 154},
@@ -179,42 +168,35 @@ export const Scene1: React.FC = () => (
 
     <Beat from={0} to={206}>
       <Pic {...A.thumb} name={IMG.thumb} x={110} y={190} size={700} rotate={-2} />
-      <T {...A.four} text="4 MASSIVE" x={900} y={150} fontSize={112} />
       <T
         {...A.splits}
-        parts={[{text: "STOCK "}, {text: "SPLITS", color: P.terracotta}]}
+        parts={[{text: "4 STOCK "}, {text: "SPLITS", color: P.terracotta}]}
         x={900}
-        y={290}
-        fontSize={112}
+        y={250}
+        fontSize={96}
       />
-      <T {...A.buy} text="BUY NOW?" x={900} y={470} fontSize={130} color={P.crimson} />
-      <HandUnderline {...A.under} x={900} y={620} width={640} color={P.crimson} strokeWidth={9} />
-      <T {...A.l1} text="the title a lot of videos" x={900} y={710} fontSize={46} color={P.mutedInk} />
-      <T {...A.l2} text="have used this month." x={900} y={775} fontSize={46} color={P.mutedInk} />
+      <T {...A.buy} text="BUY NOW?" x={900} y={440} fontSize={130} color={P.crimson} />
+      <HandUnderline {...A.under} x={900} y={600} width={640} color={P.crimson} strokeWidth={9} />
     </Beat>
 
     <Beat from={206} to={393}>
       <T {...B.problem} text="THE PROBLEM" x={140} y={50} fontSize={96} color={P.crimson} />
       <Pic {...B.calendar} name={IMG.calendar} x={130} y={210} size={700} rotate={-2} />
-      <T {...B.date} text="FRI, NOV 27, 2026" x={880} y={260} fontSize={84} />
-      <T {...B.filings} text="FILINGS CHECKED" x={880} y={430} fontSize={64} color={P.slate} />
+      <T {...B.date} text="NOV 27, 2026" x={880} y={300} fontSize={110} />
       <Pic {...B.magnifier} name={IMG.magnifier} x={1180} y={520} size={520} rotate={3} />
     </Beat>
 
     <Beat from={393} to={557}>
-      <T {...C.four} text="4" x={160} y={150} fontSize={400} />
-      <HandStrike {...C.strike} x={140} y={210} width={300} height={330} variant="double" />
-      <T {...C.fwd} text="FORWARD SPLIT" x={160} y={700} fontSize={84} color={P.terracotta} />
+      <T {...C.four} text="4" x={160} y={240} fontSize={400} />
+      <HandStrike {...C.strike} x={140} y={300} width={300} height={330} variant="double" />
       <Pic {...C.cert} name={IMG.upArrow} x={1040} y={170} size={740} rotate={2} />
-      <T {...C.us} text="IN THE U.S." x={160} y={830} fontSize={84} color={P.slate} />
-      <T {...C.one} text="1" x={600} y={150} fontSize={400} color={P.sageDark} />
-      <HandCircle {...C.circle} x={540} y={140} width={300} height={440} color={P.sageDark} />
+      <T {...C.one} text="1" x={600} y={240} fontSize={400} color={P.sageDark} />
+      <HandCircle {...C.circle} x={540} y={230} width={300} height={440} color={P.sageDark} />
     </Beat>
 
     <Beat from={557} to={745}>
       <Pic {...D.chained} name={IMG.chained} x={130} y={200} size={700} rotate={-1} />
-      <T {...D.title} text="BIGGEST SPLIT OF THE YEAR" x={130} y={70} fontSize={72} />
-      <T {...D.waiting} text="WAITING SINCE JANUARY" x={130} y={920} fontSize={56} color={P.slate} />
+      <T {...D.title} text="BIGGEST SPLIT" x={130} y={70} fontSize={96} />
       <T {...D.frozen} text="FROZEN" x={900} y={200} fontSize={130} color={P.crimson} />
       <Pic {...D.court} name={IMG.court} x={1100} y={370} size={660} rotate={2} />
     </Beat>
@@ -244,20 +226,16 @@ export const Scene1: React.FC = () => (
         </div>
       </EditorialCard>
       <Pic {...F.trap} name={IMG.trap} x={700} y={240} size={520} rotate={-2} />
-      <T {...F.trapT} text="1 TRAP" x={700} y={780} fontSize={80} color={P.crimson} />
       <Pic {...F.books} name={IMG.books} x={1300} y={240} size={520} rotate={2} />
-      <T {...F.resT} text="RESEARCH" x={1300} y={780} fontSize={80} color={P.slate} />
       <T {...F.buy} text="SHOULD YOU BUY?" x={620} y={900} fontSize={96} />
       <HandUnderline {...F.under} x={620} y={1015} width={940} color={P.crimson} strokeWidth={9} />
     </Beat>
 
     <Beat from={1076} to={1230} last>
-      <T {...G.stay} text="STAY TILL THE END" x={900} y={120} fontSize={56} color={P.mutedInk} />
       <Pic {...G.img} name={IMG.questions} x={110} y={190} size={720} rotate={-2} />
-      <T {...G.which} text="WHICH ONE" x={900} y={240} fontSize={130} />
-      <T {...G.would} text="WOULD YOU" x={900} y={390} fontSize={130} />
-      <T {...G.trust} text="TRUST?" x={900} y={540} fontSize={130} color={P.sageDark} />
-      <HandUnderline {...G.under} x={900} y={700} width={520} color={P.sageDark} strokeWidth={9} />
+      <T {...G.which} text="WHICH ONE" x={900} y={260} fontSize={130} />
+      <T {...G.trust} text="WOULD YOU TRUST?" x={900} y={440} fontSize={84} color={P.sageDark} />
+      <HandUnderline {...G.under} x={900} y={560} width={900} color={P.sageDark} strokeWidth={9} />
     </Beat>
   </PaperSurface>
 );
