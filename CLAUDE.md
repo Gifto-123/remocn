@@ -27,6 +27,14 @@
 - Side-by-side columns around a centered `Pic`: size the `Pic` so columns clear its box by 40px.
 - Before finishing, check each beat's final frame in Studio; fix overlap by moving `x`/`y`/`size`, never by hiding the hand.
 
+## Text density rules (mandatory)
+
+- Max 2 `MarkerText` per beat. Exception: timeline/sequence beats, one label per node (max 3).
+- Max 3 words per text (symbols and numerals don't count). No sentences, captions, or small sub-labels.
+- Show only the key number, name, or verdict; narration carries the rest. Dates, tickers, and qualifiers stay in narration unless the beat is about them.
+- Prefer an image over a label. Never label what an image already shows.
+- Cut text by deleting its `planHand()` slot; keep remaining `at` values; re-center the layout and re-check overlap rules.
+
 # Remocn
 
 Remotion + React + TypeScript video project. Keep repository exploration focused on `src/` and `public/assets/`.
