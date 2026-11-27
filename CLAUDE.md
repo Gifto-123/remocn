@@ -5,7 +5,7 @@
 - Trigger: when the user types `start <scene>` (for example, `start scene1`), immediately execute the workflow for that scene; do not ask which scene.
 - Work on exactly one concrete scene per task.
 - Analyze narration audio and narration JSON in `public/narration/<scene>/`; derive timing, beats, and visual requirements.
-- Study style references in `public/assets/referenc-imgs/` before proposing visuals.
+- Study style references in `public/assets/reference-imgs/` before proposing visuals.
 - Assume required images are already generated and placed in `public/assets/<scene>/`; inspect and use them.
 - Only generate Google Flow prompts when explicitly requested, using exactly: `(image 1 detailed prompt, image 2 detailed prompt, image 3 detailed prompt)`.
 - Compose with available shared whiteboard/editorial components from `src/whiteboard/`.
