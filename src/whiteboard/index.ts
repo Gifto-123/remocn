@@ -100,6 +100,15 @@ export {
   type NumberCounterFormat,
 } from "./NumberCounter";
 export {
+  MoneyFlow,
+  moneyFlowDuration,
+  getMoneyFlowConnectionPoint,
+  type MoneyFlowProps,
+  type MoneyFlowNode,
+  type MoneyFlowConnection,
+  type MoneyFlowPoint,
+} from "./MoneyFlow";
+export {
   SpeechBubble,
   ThoughtBubble,
   bubbleDuration,
