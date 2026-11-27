@@ -209,13 +209,13 @@ export const Scene3: React.FC = () => (
 
     <Beat from={228} to={638}>
       <Pic {...C.img} src={IMG.timeline} x={100} y={90} size={900} />
-      <T {...C.cap1} text="ON THE BOOKS" x={900} y={95} fontSize={46} color={P.mutedInk} />
-      <T {...C.d3} text="THU DEC 3" x={900} y={150} fontSize={100} />
-      <T {...C.x2} text="+2 SHARES PER 1" x={900} y={265} fontSize={60} color={P.terracotta} />
-      <T {...C.cap2} text="NEW SHARES ARRIVE" x={900} y={370} fontSize={46} color={P.mutedInk} />
-      <T {...C.d4} text="FRI DEC 4" x={900} y={425} fontSize={100} />
-      <T {...C.cap3} text="TRADES AT NEW PRICE" x={900} y={585} fontSize={46} color={P.mutedInk} />
-      <T {...C.d7} text="MON DEC 7" x={900} y={640} fontSize={100} color={P.sageDark} />
+      <T {...C.cap1} text="ON THE BOOKS" x={1060} y={95} fontSize={46} color={P.mutedInk} />
+      <T {...C.d3} text="THU DEC 3" x={1060} y={150} fontSize={100} />
+      <T {...C.x2} text="+2 SHARES PER 1" x={1060} y={290} fontSize={60} color={P.terracotta} />
+      <T {...C.cap2} text="NEW SHARES ARRIVE" x={1060} y={370} fontSize={46} color={P.mutedInk} />
+      <T {...C.d4} text="FRI DEC 4" x={1060} y={425} fontSize={100} />
+      <T {...C.cap3} text="TRADES AT NEW PRICE" x={1060} y={585} fontSize={46} color={P.mutedInk} />
+      <T {...C.d7} text="MON DEC 7" x={1060} y={640} fontSize={100} color={P.sageDark} />
     </Beat>
 
     <Beat from={638} to={820}>
@@ -310,7 +310,7 @@ export const Scene3: React.FC = () => (
 
     <Beat from={2772} to={2956}>
       <T {...Q.head} text="ANALYSTS ARE DIVIDED" x={440} y={40} fontSize={80} />
-      <Pic {...Q.img} src={IMG.scale} x={610} y={190} size={700} />
+      <Pic {...Q.img} src={IMG.scale} x={630} y={210} size={660} />
       <T {...Q.rj} text="RAYMOND JAMES" x={40} y={300} fontSize={52} color={P.mutedInk} />
       <T {...Q.buy} text="STRONG BUY" x={40} y={380} fontSize={84} color={P.sageDark} />
       <T {...Q.wf} text="WELLS FARGO" x={1330} y={300} fontSize={52} color={P.mutedInk} />
