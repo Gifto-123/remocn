@@ -95,7 +95,7 @@ export const Scene7: React.FC = () => (
     </Beat>
 
     <Beat from={168} to={425}>
-      <T {...C.name} text="SANDISK" x={820} y={290} fontSize={150} color={P.terracotta} />
+      <T {...C.name} text="SITIME" x={820} y={290} fontSize={150} color={P.terracotta} />
       <Pic {...C.img} src={IMG.bar} x={110} y={200} size={640} rotate={-2} />
       <T {...C.cheap} text="CHEAPER SHARE" x={820} y={600} fontSize={100} color={P.slate} />
       <HandStrike {...C.strike} x={820} y={610} width={910} height={90} />
@@ -121,7 +121,7 @@ export const Scene7: React.FC = () => (
 
     <Beat from={793} to={1043}>
       <Pic {...H.img} src={IMG.sil} x={110} y={200} size={600} rotate={-2} />
-      <T {...H.a} text="BUY SANDISK" x={800} y={280} fontSize={90} color={P.sageDark} />
+      <T {...H.a} text="BUY SITIME" x={800} y={280} fontSize={90} color={P.sageDark} />
       <T {...H.b} text="WAIT FOR META" x={800} y={450} fontSize={90} color={P.slate} />
       <T {...H.c} text="STAY AWAY" x={800} y={620} fontSize={90} color={P.crimson} />
     </Beat>
