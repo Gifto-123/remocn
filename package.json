@@ -34,6 +34,7 @@
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
-    "export-sfx": "node scripts/export-sfx.mjs"
+    "export-sfx": "node scripts/export-sfx.mjs",
+    "captions": "node scripts/to-captions.mjs"
   }
 }
