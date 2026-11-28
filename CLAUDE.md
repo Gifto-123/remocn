@@ -1,16 +1,16 @@
 # Response style: reply in ultra-concise telegraphic style with zero conversational filler, explanations, or pleasantries—output only code diffs and essential commands.
 
-## Scene workflow
+## Short workflow
 
-- Trigger: when the user types `start <scene>` (for example, `start scene1`), immediately execute the workflow for that scene; do not ask which scene.
-- Work on exactly one concrete scene per task.
-- Analyze narration audio and narration JSON in `public/narration/<scene>/`; derive timing, beats, and visual requirements.
+- Trigger: when the user types `start <short>` (for example, `start short1`), immediately execute the workflow for that short; do not ask which short.
+- Work on exactly one short per task. Each video is one short (`short1`, `short2`, …); no scenes, no long form.
+- Analyze narration audio and narration JSON in `public/narration/<short>/`; derive timing, beats, and visual requirements.
 - Study style references in `public/assets/reference-imgs/` before proposing visuals.
-- Assume required images are already generated and placed in `public/assets/<scene>/`; inspect and use them.
+- Assume required images are already generated and placed in `public/assets/<short>/`; inspect and use them.
 - Only generate Google Flow prompts when explicitly requested, using exactly: `(image 1 detailed prompt, image 2 detailed prompt, image 3 detailed prompt)`.
 - Compose with shared components via category barrels: `from "../whiteboard/<category>"` (see Component map). Preview any component in `src/compositions/showcase/`.
-- Implement the scene at `src/compositions/<scene>.tsx`, then register it in `src/Root.tsx`.
-- Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active scene.
+- Implement the short at `src/compositions/<short>.tsx`, then register it in `src/Root.tsx`.
+- Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active short.
 
 ## Canvas lock (mandatory)
 
@@ -24,7 +24,7 @@
 - Source of truth: `public/assets/reference-imgs/`. Read it before choosing or generating any asset. Match it exactly.
 - Look: flat vector cartoon on cream paper (`EDITORIAL_PALETTE.paper`), thick dark outlines, flat fills. No gradients, shading, textures, glow, haze, bokeh, film grain or photorealism. One subject per image. At most a soft oval ground shadow.
 - Palette: sage green, terracotta/orange, slate blue, mustard yellow, ink-black outline. Crimson only for negatives.
-- Characters: round head, stick arms and legs, flat-colour torso, minimal face. Base is `character-man.png`, with the same proportions in every scene.
+- Characters: round head, stick arms and legs, flat-colour torso, minimal face. Base is `character-man.png`, with the same proportions in every short.
 - Objects and icons: like the icon-sheet references (thick outline, flat fills).
 - Reuse `hand-pen.png`, `money-stack-color.png` and `money-stack-sketch.png`.
 - AI image spec: 1080×1920 portrait, or a square cutout on a transparent background. Prompt base: `flat vector sticker illustration, thick black outline, flat fills in sage green, terracotta, slate blue and mustard, cream paper background, single subject centered, 9:16 portrait, no text, no gradients, no photorealism`.
@@ -33,14 +33,14 @@
 
 ## Hand rules (mandatory)
 
-- One hand per scene. Route all pen actions—images, text, and annotations—through `planHand()`; never hardcode `delay` on a hand element.
-- Derive `at` from the scene JSON word start: `(seconds × 30) - beat start`.
+- One hand per short. Route all pen actions—images, text, and annotations—through `planHand()`; never hardcode `delay` on a hand element.
+- Derive `at` from the narration JSON word start: `(seconds × 30) - beat start`.
 - Images must use the hand. Never set `showHand={false}` to fix overlap; fix the hand plan.
-- Fix every `[handPlan]` console warning before finishing the scene.
+- Fix every `[handPlan]` console warning before finishing the short.
 
 ## Beat sheet rules (mandatory)
 
-- Before any code, post a beat sheet table for the scene: beat | narration span | claim (≤8 words) | visual type (A–D) | exact visual | components/assets. Wait for approval before implementing.
+- Before any code, post a beat sheet table for the short: beat | narration span | claim (≤8 words) | visual type (A–D) | exact visual | components/assets. Wait for approval before implementing.
 - One claim per beat.
 - Mute test: with no audio, a viewer must understand the beat's claim within 2 seconds. If not, redesign the visual.
 
@@ -90,7 +90,7 @@ Remotion + React + TypeScript video project. Keep repository exploration focused
 ## Important paths
 
 - `public/assets/` — source images, fonts, audio, and other assets served through Remotion's `staticFile()`.
-- `src/compositions/` — individual video compositions and demos; add new scenes here.
+- `src/compositions/` — individual video compositions and demos; add new shorts here.
 - `src/whiteboard/` — reusable components, one folder per category (see Component map). `src/whiteboard/index.ts` is the stable root barrel; `src/whiteboard/categories.ts` is the category registry.
 - `src/Root.tsx` — Remotion composition registry/entry point. Register compositions here with `<Composition />`.
 - `src/compositions/showcase/` — live demo of every component (`ComponentShowcase` + one composition per component in Studio, grouped by category).
