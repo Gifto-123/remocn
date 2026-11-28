@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {
+  Easing,
   Sequence,
   interpolate,
   staticFile,
@@ -9,7 +10,7 @@ import {
 } from "remotion";
 import {createTikTokStyleCaptions, type Caption, type TikTokPage} from "@remotion/captions";
 import {fitText} from "@remotion/layout-utils";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P, springPop} from "./EditorialCard";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "./EditorialCard";
 
 /**
  * Word-highlight captions for Shorts (1080x1920). Official Remotion flow:
@@ -81,10 +82,6 @@ const CaptionPage: React.FC<{page: TikTokPage; look: Look}> = ({page, look}) => 
   }).fontSize;
   const fontSize = Math.max(look.minFontSize, Math.min(look.maxFontSize, fitted));
 
-  const pop = springPop(frame, fps, 0, {damping: 14, stiffness: 220});
-  const scale = interpolate(pop, [0, 1], [0.88, 1]);
-  const opacity = interpolate(frame, [0, 3], [0, 1], {extrapolateRight: "clamp"});
-
   return (
     <div
       style={{
@@ -97,8 +94,16 @@ const CaptionPage: React.FC<{page: TikTokPage; look: Look}> = ({page, look}) => 
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        opacity,
-        transform: `scale(${scale})`,
+        opacity: interpolate(frame, [0, 3], [0, 1], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        }),
+        scale: interpolate(frame, [0, 0.25 * fps], [0.88, 1], {
+          easing: Easing.spring({damping: 14}),
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          output: "perceptual-scale",
+        }),
         transformOrigin: "50% 50%",
       }}
     >
