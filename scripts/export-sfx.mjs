@@ -85,6 +85,13 @@ Options:
   --master <n>         Master volume multiplier (default: 1)
   --fps <n>            Override FPS (default: auto or 30)
   --delay <n>          Override scene start frame (default: auto or 0)
+  --voice <json>       whisper.cpp JSON of the narration; SFX is ducked under the words
+  --duck <dB>          Duck depth under voice (default -5)
+  --draw <n>           Marker/eraser bed level (default 0.5 for shorts, else 0)
+
+Shorts: export \`SFX\` (ShortSfx) and \`SHORT_DURATION\` (frames) from the composition, e.g.
+  pnpm export-sfx -- --from src/compositions/short1.tsx --out public/audio/short1/sfx.wav \\
+    --voice public/narration/short1/short1.json
 `);
   process.exit(0);
 }
@@ -112,6 +119,9 @@ const {
   presetForAspect,
   extractMotionTrace,
   extractMultiSceneTrace,
+  buildShortTrace,
+  duckStereo,
+  wordSpansFromWhisper,
   renderMasterAudio,
   decodeWavBytes,
   encodeWavBytes,
@@ -136,21 +146,25 @@ if (fromPath.endsWith(".json")) {
     viewportHeight: pickExport("_HEIGHT", undefined),
     totalFrames: pickExport("_DURATION", undefined),
     cameraKeyframes: mod.KEYFRAMES ?? mod.cameraKeyframes,
+    sfx: mod.SFX,
   };
 }
 
 const hasScenes = Array.isArray(spec.scenes) && spec.scenes.length > 0;
 const hasItems = Array.isArray(spec.items) && spec.items.length > 0;
-if (!hasScenes && !hasItems) {
+const hasSfx = !!spec.sfx && Array.isArray(spec.sfx.cues);
+if (!hasScenes && !hasItems && !hasSfx) {
   console.error(
-    `No ITEMS or SCENES array found in ${fromArg}. Export \`ITEMS\` / \`SCENES\` or provide JSON.`,
+    `No ITEMS, SCENES or SFX found in ${fromArg}. Export \`ITEMS\` / \`SCENES\` or provide JSON.`,
   );
   process.exit(1);
 }
 
 const presetFlag = flag("preset");
 const aspectFlag = flag("aspect");
-const presetObj = presetFlag
+const presetObj = hasSfx && !presetFlag && !aspectFlag
+  ? CANVAS_PRESETS.youtubeShort
+  : presetFlag
   ? CANVAS_PRESETS[presetFlag]
   : aspectFlag
     ? presetForAspect(aspectFlag)
@@ -179,7 +193,12 @@ if (foleyDir) {
   }
 }
 
-const trace = hasScenes
+const shortFrames = spec.totalFrames ?? (hasSfx
+  ? Math.max(...spec.sfx.cues.map((c) => c.frame + (c.durationFrames ?? 0)), 0) + fps
+  : undefined);
+const trace = hasSfx
+  ? buildShortTrace(spec.sfx, {totalFrames: shortFrames, fps, width: viewportWidth, height: viewportHeight})
+  : hasScenes
   ? extractMultiSceneTrace({
       scenes: spec.scenes,
       fps,
@@ -199,11 +218,21 @@ const trace = hasScenes
 const result = renderMasterAudio(trace, {
   seed,
   master,
+  drawVolume: Number(flag("draw", hasSfx ? "0.5" : "0")),
   foley: loadedFoleyNames.length > 0 ? foley : undefined,
 });
 
+let wavBytes = result.wavBytes;
+const voiceArg = flag("voice");
+if (voiceArg) {
+  const words = wordSpansFromWhisper(JSON.parse(fs.readFileSync(path.resolve(cwd, voiceArg), "utf8")));
+  duckStereo(result.master, words, {depthDb: Number(flag("duck", "-5"))});
+  wavBytes = encodeWavBytes(result.master, seed);
+  console.log(`Ducked under ${words.length} narration tokens (${flag("duck", "-5")} dB)`);
+}
+
 fs.mkdirSync(path.dirname(outPath), {recursive: true});
-fs.writeFileSync(outPath, result.wavBytes);
+fs.writeFileSync(outPath, wavBytes);
 
 const base = outPath.replace(/\.wav$/i, "");
 if (exportStems) {

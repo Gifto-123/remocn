@@ -6,3 +6,5 @@ export * from "./motionTrace";
 export * from "./sfxEngine";
 export * from "./masterAudio";
 export * from "./WhiteboardAudio";
+export * from "./shortSfx";
+export * from "./ShortAudio";

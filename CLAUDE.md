@@ -9,6 +9,7 @@
 - User generates images and places them in `public/assets/<short>/`, then says so.
 - Phase 3 (verify assets): list `public/assets/<short>/`; inspect each image; check count, names, size/format vs the AI image spec and style lock. Report missing or off-spec images and stop until fixed.
 - Phase 4 (build): compose with shared components via category barrels: `from "../whiteboard/<category>"` (see Component map; preview any component in `src/compositions/showcase/`). Implement at `src/compositions/<short>.tsx`, register in `src/Root.tsx`.
+- Phase 5 (SFX): export `SFX` and `SHORT_DURATION` from the short (see SFX rules), render `public/audio/<short>/sfx.wav`, add `<ShortAudio>`.
 - Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active short.
 
 ## Canvas lock (mandatory)
@@ -42,6 +43,17 @@
 - Before any code, post a beat sheet table for the short: beat | narration span | claim (≤8 words) | visual type (A–D) | exact visual | components/assets. Wait for approval before implementing.
 - One claim per beat.
 - Mute test: with no audio, a viewer must understand the beat's claim within 2 seconds. If not, redesign the visual.
+
+## SFX rules (mandatory)
+
+- Sound effects only. No background music.
+- Every short exports `SFX: ShortSfx` and `SHORT_DURATION` (frames). Build `SFX` from the same `planHand()` plans the beats render with: `handPlanSfx(PLAN, {start: beatStart})`; merge with `mergeSfx(...)`. Never retype timings.
+- Plans live at module level (`const PLAN_A = planHand(...)`) so the CLI can read them headlessly.
+- Manual cues via `cueAt(frame, kind)`: `whooshTransition` on every beat cut, `pop`/`ping` on a key number or verdict reveal. Max 1 accent per beat.
+- Render: `pnpm export-sfx -- --from src/compositions/<short>.tsx --out public/audio/<short>/sfx.wav --voice public/narration/<short>/<short>.json`. Output is 48 kHz stereo, ducked under the voice (`--duck`, default -5 dB).
+- Play with `<ShortAudio short voice="narration/<short>/<file>" />`. Re-render the WAV after any timing change.
+- Recorded foley (optional): `public/audio/foley/{marker,eraser,whoosh,pop,ping,penTap}.wav` via `--foley-dir`; missing files fall back to synth.
+- Audio-only components are exempt from the showcase rule.
 
 ## Layout rules (mandatory)
 
