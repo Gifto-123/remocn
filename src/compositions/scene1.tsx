@@ -8,6 +8,7 @@ import {
   HandCross,
   HandUnderline,
   HighlighterSweep,
+  LowerThird,
   NumberCounter,
   PaperSurface,
   RoundedFrame,
@@ -340,6 +341,7 @@ export const Scene1: React.FC = () => (
         <Evidence src={IMG.filing} native={1838} scale={1.8} cropX={0} w={1688} h={188} />
       </Draw>
       <RoundedFrame {...B.frame} x={92} y={516} width={1736} height={236} radius={40} color={P.ink} strokeWidth={10} />
+      <LowerThird text="SiTime · SEC filing, Note 13" delay={150} />
       <HighlighterSweep {...B.hl} x={634} y={631} width={332} height={36} />
     </Beat>
 
@@ -393,6 +395,7 @@ export const Scene1: React.FC = () => (
         <Evidence src={IMG.docket} native={1900} scale={2.1} cropX={430} w={1688} h={198} />
       </Draw>
       <RoundedFrame {...D.frame} x={92} y={306} width={1736} height={246} radius={40} color={P.ink} strokeWidth={10} />
+      <LowerThird text="Meta Platforms · SEC filing, 8-K Item 8.01" delay={60} />
       <T {...D.frozen} text="FROZEN" x={110} y={640} fontSize={230} color={P.crimson} />
       <HandCircle {...D.ring} x={462} y={441} width={632} height={76} color={P.crimson} strokeWidth={10} />
     </Beat>

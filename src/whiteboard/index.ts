@@ -246,3 +246,4 @@ export {
 
 export {RoundedFrame, roundedFrameDuration, type RoundedFrameProps} from "./RoundedFrame";
 export {planHand, type HandSlot, type PlannedSlot} from "./handPlan";
+export {LowerThird, type LowerThirdProps} from "./LowerThird";
