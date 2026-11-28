@@ -3,7 +3,6 @@ import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from "remot
 import {Audio} from "@remotion/media";
 import {
   CANVAS_PRESETS,
-  DrawOn,
   HandCircle,
   HandCross,
   HandUnderline,
@@ -19,6 +18,7 @@ import {
   EDITORIAL_PALETTE as P,
 } from "../whiteboard/components/EditorialCard";
 import {Beat, T} from "../whiteboard/components/SceneKit";
+import {Draw, INK, QMark, SplitCard} from "../whiteboard/components/DrawnProps";
 
 export const SCENE1_WIDTH = CANVAS_PRESETS.youtubeLong.width;
 export const SCENE1_HEIGHT = CANVAS_PRESETS.youtubeLong.height;
@@ -36,51 +36,6 @@ const IMG = {
 /* ------------------------------------------------------------------ */
 /* Drawn pieces (SVG, revealed by the hand through DrawOn)             */
 /* ------------------------------------------------------------------ */
-
-const INK = {stroke: P.ink, strokeLinecap: "round", strokeLinejoin: "round"} as const;
-
-/** Split card: one certificate forking into `parts` smaller ones. 360x440 viewBox. */
-const SplitCard: React.FC<{parts: number; width: number}> = ({parts, width}) => {
-  const gap = 14;
-  const mw = (296 - gap * (parts - 1)) / parts;
-  const minis = Array.from({length: parts}, (_, i) => {
-    const x = 32 + i * (mw + gap);
-    return {x, cx: x + mw / 2};
-  });
-  const first = minis[0].cx;
-  const last = minis[parts - 1].cx;
-  return (
-    <svg width={width} height={(width * 440) / 360} viewBox="0 0 360 440">
-      <rect x={6} y={6} width={348} height={428} rx={32} fill={P.paperCard} strokeWidth={6} {...INK} />
-      <rect x={70} y={40} width={220} height={130} rx={14} fill={P.paperAlt} strokeWidth={5} {...INK} />
-      <circle cx={180} cy={105} r={26} fill={P.mustard} strokeWidth={4} {...INK} />
-      <path d="M92 66h64M204 66h64M92 146h176" fill="none" strokeWidth={4} {...INK} />
-      <path d="M180 174v40" fill="none" strokeWidth={6} {...INK} />
-      <path d={`M${first} 214H${last}`} fill="none" strokeWidth={6} {...INK} />
-      {minis.map((m, i) => (
-        <g key={i}>
-          <path d={`M${m.cx} 214V252M${m.cx - 9} 242l9 11 9-11`} fill="none" strokeWidth={5} {...INK} />
-          <rect x={m.x} y={266} width={mw} height={120} rx={8} fill={P.paperCard} strokeWidth={5} {...INK} />
-          <circle cx={m.cx} cy={326} r={Math.min(14, mw / 4)} fill={P.mustard} strokeWidth={3} {...INK} />
-        </g>
-      ))}
-    </svg>
-  );
-};
-
-/** Big drawn question mark. */
-const QMark: React.FC<{width: number}> = ({width}) => (
-  <svg width={width} height={(width * 280) / 200} viewBox="-80 -140 200 280">
-    <path
-      d="M-42 -50 C-42 -120 62 -120 62 -50 C62 -8 12 0 12 56"
-      fill="none"
-      stroke={P.crimson}
-      strokeWidth={24}
-      strokeLinecap="round"
-    />
-    <circle cx={12} cy={102} r={14} fill={P.crimson} />
-  </svg>
-);
 
 /** Alarm clock whose hands run backwards over `frames`. */
 const CountdownClock: React.FC<{size: number; frames: number}> = ({size, frames}) => {
@@ -191,15 +146,6 @@ const Evidence: React.FC<{
       />
     </div>
   </div>
-);
-
-/** Slot-driven drawing of any SVG/DOM child. */
-const Draw: React.FC<
-  Omit<React.ComponentProps<typeof DrawOn>, "src"> & {children: React.ReactNode}
-> = ({children, ...rest}) => (
-  <DrawOn bands={4} hand={{scale: 0.55}} {...rest}>
-    {children}
-  </DrawOn>
 );
 
 /** Full-bleed cinematic hook image with slow push-in and dark overlay. */

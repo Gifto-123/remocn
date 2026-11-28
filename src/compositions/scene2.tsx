@@ -1,147 +1,245 @@
 import React from "react";
 import {staticFile} from "remotion";
 import {Audio} from "@remotion/media";
-import {CANVAS_PRESETS, PaperSurface} from "../whiteboard";
+import {
+  CANVAS_PRESETS,
+  HandArrow,
+  HandCheck,
+  NumberCounter,
+  PaperSurface,
+} from "../whiteboard";
 import {planHand} from "../whiteboard/handPlan";
-import {EDITORIAL_PALETTE as P} from "../whiteboard/components/EditorialCard";
-import {Beat, Pic, T} from "../whiteboard/components/SceneKit";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "../whiteboard/components/EditorialCard";
+import {Beat, T} from "../whiteboard/components/SceneKit";
+import {
+  Bill,
+  Building,
+  Chip,
+  CornCan,
+  Draw,
+  Equals,
+  INK,
+  Jet,
+  Magnifier,
+  MemoryCard,
+  QMark,
+  SplitCard,
+  Stamp,
+} from "../whiteboard/components/DrawnProps";
 
 export const SCENE2_WIDTH = CANVAS_PRESETS.youtubeLong.width;
 export const SCENE2_HEIGHT = CANVAS_PRESETS.youtubeLong.height;
 export const SCENE2_FPS = CANVAS_PRESETS.youtubeLong.fps;
-/** ~46.07s. mp3 = 737080 B @128kbps. Narration ends 44.04s. Set exact mp3 length if different. */
-export const SCENE2_DURATION = 1382;
+/** mp3 = 45.01s (1350f); narration ends ~44.2s. +1s tail. */
+export const SCENE2_DURATION = 1380;
 
-const img = (name: string) => staticFile(`assets/scene2/${name}`);
-const IMG = {
-  cal: img("Red_ink_stamp_on_calendar_b72fb43d.jpg"),
-  corn: img("Steel_cans_spilling_sweet_corn_16e675b8.jpg"),
-  clip: img("Metal_clipboard_with_corporate_c…_dafb5b34.jpg"),
-  flash: img("Memory_card_and_portable_SSD_8e03bb5b.jpg"),
-  mag: img("Magnifying_glass_examining_stock…_2454c758.jpg"),
-  scissors: img("Scissors_cutting_banknote_into_h…_b58b96f0.jpg"),
-  chip: img("Microchip_on_gold_coin_dd52dd84.jpg"),
-  jet: img("Passenger_jet_lifting_off_runway_ff58b1f1.jpg"),
-  video: img("Laptop_on_desk_displaying_video_2202da56.jpg"),
-} as const;
-
-/* Hand plans. `at` = beat-local frame the pen touches paper (narration-locked). */
+/* `at` = beat-local frame the pen touches paper = (word start s × 30) − beat start. */
 const A = planHand(
-  {img: {at: 6, draw: 24}, l1: {at: 38, draw: 16}, l2: {at: 64, draw: 18}},
-  {label: "scene2/A", limit: 99},
+  {clip: {at: 4, draw: 26}, title: {at: 46, draw: 20}, tick: {at: 80, draw: 8}},
+  {label: "scene2/A", limit: 102},
 );
-const B = planHand(
-  {img: {at: 6, draw: 30}, name: {at: 46, draw: 14}, ratio: {at: 76, draw: 20}},
-  {label: "scene2/B", limit: 152},
-);
-const C = planHand(
-  {semi: {at: 14, draw: 28}, img: {at: 58, draw: 26}, ratio: {at: 119, draw: 18}},
-  {label: "scene2/C", limit: 192},
-);
-const D = planHand(
-  {name: {at: 4, draw: 10}, ratio: {at: 23, draw: 14}, img: {at: 84, draw: 20}},
-  {label: "scene2/D", limit: 133},
-);
-const E = planHand(
-  {name: {at: 4, draw: 18}, ratio: {at: 31, draw: 12}, img: {at: 76, draw: 20}},
-  {label: "scene2/E", limit: 116},
-);
+const B = planHand({icon: {at: 8, draw: 22}, name: {at: 35, draw: 16}}, {label: "scene2/B", limit: 132});
+const C = planHand({icon: {at: 4, draw: 24}, name: {at: 86, draw: 14}}, {label: "scene2/C", limit: 183});
+const D = planHand({name: {at: 4, draw: 16}, icon: {at: 28, draw: 22}}, {label: "scene2/D", limit: 126});
+const E = planHand({name: {at: 4, draw: 16}, icon: {at: 28, draw: 22}}, {label: "scene2/E", limit: 108});
 const F = planHand(
-  {video: {at: 36, draw: 24}, buy: {at: 68, draw: 22}, cal: {at: 107, draw: 24}, dead: {at: 138, draw: 22}},
-  {label: "scene2/F", limit: 170},
+  {
+    c1: {at: 4, draw: 12, enter: 3, exit: 3},
+    c2: {at: 22, draw: 12, enter: 3, exit: 3},
+    c3: {at: 40, draw: 12, enter: 3, exit: 3},
+    c4: {at: 58, draw: 12, enter: 3, exit: 3},
+    stamp: {at: 130, draw: 12},
+  },
+  {label: "scene2/F", limit: 162},
 );
 const G = planHand(
-  {l1: {at: 20, draw: 20}, l2: {at: 62, draw: 12}},
-  {label: "scene2/G", limit: 81},
+  {bl: {at: 70, draw: 22}, eq: {at: 100, draw: 10}, br: {at: 118, draw: 22}, same: {at: 148, draw: 14}},
+  {label: "scene2/G", limit: 183},
 );
 const H = planHand(
-  {l1: {at: 6, draw: 16}, l2: {at: 28, draw: 22}},
-  {label: "scene2/H", limit: 118},
+  {
+    ten: {at: 3, draw: 18},
+    arrow: {at: 36, draw: 8, enter: 3, exit: 3},
+    b1: {at: 46, draw: 12},
+    b2: {at: 66, draw: 12},
+  },
+  {label: "scene2/H", limit: 147},
 );
 const I = planHand(
-  {img: {at: 4, draw: 24}, eq: {at: 58, draw: 22}, still: {at: 120, draw: 20}},
-  {label: "scene2/I", limit: 157},
+  {
+    bld: {at: 8, draw: 24},
+    sig: {at: 76, draw: 20},
+    mag: {at: 104, draw: 16},
+    q: {at: 134, draw: 12},
+  },
+  {label: "scene2/I", limit: 237},
 );
-const J = planHand(
-  {q: {at: 12, draw: 30}, img: {at: 96, draw: 24}, des: {at: 135, draw: 26}},
-  {label: "scene2/J", limit: 236},
+
+/** Counter used by the four split beats: 1 → n with a "-FOR-1" suffix. */
+const Ratio: React.FC<{n: number; delay: number}> = ({n, delay}) => (
+  <NumberCounter
+    value={n}
+    from={1}
+    delay={delay}
+    duration={20}
+    decimals={0}
+    suffix="-FOR-1"
+    x={800}
+    y={520}
+    fontSize={230}
+    fontWeight={800}
+    fontFamily={EDITORIAL_FONTS.head}
+    color={P.terracotta}
+  />
+);
+
+const CARD_W = 340;
+const CARD_H = (CARD_W * 440) / 360;
+const ROW_X = [190, 590, 990, 1390];
+
+/** Clipboard checklist: only the first line is ticked. */
+const Clipboard: React.FC<{size: number}> = ({size}) => (
+  <svg width={size} height={size} viewBox="0 0 360 360">
+    <rect x={60} y={40} width={240} height={300} rx={20} fill={P.paperAlt} strokeWidth={9} {...INK} />
+    <rect x={120} y={22} width={120} height={46} rx={14} fill={P.slate} strokeWidth={7} {...INK} />
+    <rect x={84} y={78} width={192} height={238} rx={8} fill={P.paperCard} strokeWidth={5} {...INK} />
+    {[0, 1, 2, 3].map((i) => (
+      <g key={i}>
+        <rect x={102} y={102 + i * 52} width={28} height={28} rx={5} fill="none" strokeWidth={5} {...INK} />
+        <path d={`M148 ${116 + i * 52}H${i === 0 ? 256 : 190}`} fill="none" strokeWidth={5} {...INK} />
+      </g>
+    ))}
+  </svg>
 );
 
 /**
- * Scene 2 — the four splits. Audio 0.14–44.04s. Beats (abs frames @30fps):
- * A    0–91   "why the list is so short"
- * B   91–235  SanDisk 8-for-1, Nov 20
- * C  235–419  iShares Semiconductor ETF (SOXX) 3-for-1, Nov 5
- * D  419–544  Embraer 4-for-1 (US shares), mid-Nov
- * E  544–652  Seneca Foods 5-for-1, Nov 17
- * F  652–814  all done; video said buy before; deadline passed
- * G  814–887  the part nobody says out loud
- * H  887–997  a split changes nothing about worth
- * I  997–1146 cut a $10 into two $5 = still $10
- * J 1146–1382 the only real question
- * Text density: max 2 MarkerText per beat; see CLAUDE.md. Dates/tickers stay in narration.
+ * Scene 2 — recent splits already happened. Audio 0.14–43.7s. Beats (abs frames @30fps):
+ * A     0–102    C  the list is short           (clipboard, one line)
+ * B   102–234    B  SanDisk 8-for-1             (memory card, counter)
+ * C   234–417    B  SOXX 3-for-1                (chip, counter)
+ * D   417–543    B  Embraer 4-for-1             (jet, counter)
+ * E   543–651    B  Seneca 5-for-1              (corn can, counter)
+ * F   651–813    C  those deadlines passed      (4 split cards + stamp)
+ * G   813–996    C  a split changes nothing     (building = building)
+ * H   996–1143   B  $10 cut in two is $10       (bill -> 2 bills)
+ * I  1143–1380   C  what does it signal?        (building + magnifier + ?)
+ * All code-drawn. No AI images.
  */
 export const Scene2: React.FC = () => (
   <PaperSurface variant="paper" backgroundColor={P.paper} grain={0.04}>
     <Audio src={staticFile("narration/scene2/scene2.mp3")} />
 
-    <Beat from={0} to={91}>
-      <Pic {...A.img} src={IMG.clip} x={110} y={190} size={700} rotate={-2} />
-      <T {...A.l1} text="WHY THE LIST" x={900} y={300} fontSize={120} />
-      <T {...A.l2} text="IS SO SHORT?" x={900} y={450} fontSize={120} color={P.crimson} />
+    {/* A — short list */}
+    <Beat from={0} to={102}>
+      <Draw {...A.clip} x={110} y={240} width={560} height={560}>
+        <Clipboard size={560} />
+      </Draw>
+      <HandCheck {...A.tick} x={440} y={330} size={84} color={P.sageDark} />
+      <T {...A.title} text="SHORT LIST" x={800} y={420} fontSize={170} color={P.ink} />
     </Beat>
 
-    <Beat from={91} to={235}>
-      <Pic {...B.img} src={IMG.flash} x={110} y={200} size={640} rotate={-2} />
-      <T {...B.name} text="SANDISK" x={820} y={300} fontSize={120} />
-      <T {...B.ratio} text="8-FOR-1" x={820} y={500} fontSize={200} color={P.terracotta} />
+    {/* B — SanDisk */}
+    <Beat from={102} to={234}>
+      <Draw {...B.icon} x={110} y={240} width={560} height={560}>
+        <MemoryCard size={560} />
+      </Draw>
+      <T {...B.name} text="SANDISK" x={800} y={300} fontSize={140} color={P.ink} />
+      <Ratio n={8} delay={64} />
     </Beat>
 
-    <Beat from={235} to={419}>
-      <T {...C.semi} text="SEMICONDUCTOR ETF" x={110} y={300} fontSize={76} color={P.mutedInk} />
-      <Pic {...C.img} src={IMG.chip} x={1130} y={200} size={640} rotate={2} />
-      <T {...C.ratio} text="3-FOR-1" x={110} y={450} fontSize={200} color={P.terracotta} />
+    {/* C — SOXX */}
+    <Beat from={234} to={417}>
+      <Draw {...C.icon} x={110} y={240} width={560} height={560}>
+        <Chip size={560} />
+      </Draw>
+      <T {...C.name} text="SOXX" x={800} y={300} fontSize={170} color={P.ink} />
+      <Ratio n={3} delay={116} />
     </Beat>
 
-    <Beat from={419} to={544}>
-      <T {...D.name} text="EMBRAER" x={820} y={300} fontSize={120} />
-      <T {...D.ratio} text="4-FOR-1" x={820} y={500} fontSize={200} color={P.terracotta} />
-      <Pic {...D.img} src={IMG.jet} x={110} y={200} size={640} rotate={-2} />
+    {/* D — Embraer */}
+    <Beat from={417} to={543}>
+      <T {...D.name} text="EMBRAER" x={800} y={300} fontSize={140} color={P.ink} />
+      <Draw {...D.icon} x={110} y={240} width={560} height={560}>
+        <Jet size={560} />
+      </Draw>
+      <Ratio n={4} delay={20} />
     </Beat>
 
-    <Beat from={544} to={652}>
-      <T {...E.name} text="SENECA FOODS" x={110} y={300} fontSize={110} />
-      <T {...E.ratio} text="5-FOR-1" x={110} y={500} fontSize={200} color={P.terracotta} />
-      <Pic {...E.img} src={IMG.corn} x={1130} y={200} size={640} rotate={2} />
+    {/* E — Seneca Foods */}
+    <Beat from={543} to={651}>
+      <T {...E.name} text="SENECA" x={800} y={300} fontSize={140} color={P.ink} />
+      <Draw {...E.icon} x={110} y={240} width={560} height={560}>
+        <CornCan size={560} />
+      </Draw>
+      <Ratio n={5} delay={28} />
     </Beat>
 
-    <Beat from={652} to={814}>
-      <Pic {...F.video} src={IMG.video} x={100} y={160} size={640} rotate={-2} />
-      <T {...F.buy} text="BUY BEFORE THESE?" x={780} y={260} fontSize={90} />
-      <Pic {...F.cal} src={IMG.cal} x={1150} y={420} size={640} rotate={2} />
-      <T {...F.dead} text="DEADLINE PASSED" x={100} y={880} fontSize={80} color={P.crimson} />
+    {/* F — deadlines passed */}
+    <Beat from={651} to={813}>
+      {([F.c1, F.c2, F.c3, F.c4] as const).map((slot, i) => (
+        <Draw key={i} {...slot} x={ROW_X[i]} y={200} width={CARD_W} height={CARD_H}>
+          <SplitCard parts={[8, 3, 4, 5][i]} width={CARD_W} />
+        </Draw>
+      ))}
+      <Draw {...F.stamp} x={400} y={290} width={1120} height={260} style={{transform: "rotate(-6deg)"}}>
+        <Stamp text="TOO LATE" width={1120} height={260} fontSize={150} />
+      </Draw>
     </Beat>
 
-    <Beat from={814} to={887}>
-      <T {...G.l1} text="NOBODY SAYS" x={330} y={250} fontSize={150} />
-      <T {...G.l2} text="OUT LOUD." x={330} y={480} fontSize={150} color={P.crimson} />
+    {/* G — a split changes nothing */}
+    <Beat from={813} to={996}>
+      <Draw {...G.bl} x={200} y={230} width={440} height={440}>
+        <Building size={440} tags={1} />
+      </Draw>
+      <Draw {...G.eq} x={860} y={340} width={200} height={200}>
+        <Equals size={200} />
+      </Draw>
+      <Draw {...G.br} x={1280} y={230} width={440} height={440}>
+        <Building size={440} tags={2} />
+      </Draw>
+      <T {...G.same} text="SAME VALUE" x={505} y={760} fontSize={130} color={P.sageDark} />
     </Beat>
 
-    <Beat from={887} to={997}>
-      <T {...H.l1} text="SPLIT CHANGES" x={330} y={250} fontSize={140} />
-      <T {...H.l2} text="NOTHING." x={330} y={450} fontSize={220} color={P.crimson} />
+    {/* H — $10 cut in two */}
+    <Beat from={996} to={1143}>
+      <Draw {...H.ten} x={110} y={330} width={600} height={(600 * 250) / 520}>
+        <Bill value={10} width={600} />
+      </Draw>
+      <HandArrow {...H.arrow} from={{x: 740, y: 460}} to={{x: 900, y: 460}} color={P.ink} strokeWidth={12} />
+      <Draw {...H.b1} x={960} y={190} width={480} height={(480 * 250) / 520}>
+        <Bill value={5} width={480} />
+      </Draw>
+      <Draw {...H.b2} x={1280} y={450} width={480} height={(480 * 250) / 520}>
+        <Bill value={5} width={480} />
+      </Draw>
+      <NumberCounter
+        value={10}
+        from={5}
+        delay={118}
+        duration={18}
+        decimals={0}
+        prefix="= $"
+        x={110}
+        y={760}
+        fontSize={200}
+        fontWeight={800}
+        fontFamily={EDITORIAL_FONTS.head}
+        color={P.sageDark}
+      />
     </Beat>
 
-    <Beat from={997} to={1146}>
-      <Pic {...I.img} src={IMG.scissors} x={110} y={200} size={640} rotate={-2} />
-      <T {...I.eq} text="= $5 + $5" x={820} y={300} fontSize={130} color={P.terracotta} />
-      <T {...I.still} text="STILL $10" x={820} y={520} fontSize={150} color={P.sageDark} />
-    </Beat>
-
-    <Beat from={1146} to={1382} last>
-      <T {...J.q} text="THE ONLY QUESTION" x={120} y={100} fontSize={110} color={P.crimson} />
-      <Pic {...J.img} src={IMG.mag} x={1250} y={240} size={540} rotate={2} />
-      <T {...J.des} text="DESERVES YOUR MONEY?" x={120} y={820} fontSize={96} color={P.sageDark} />
+    {/* I — what does the split signal */}
+    <Beat from={1143} to={1380} last>
+      <Draw {...I.bld} x={130} y={230} width={560} height={560}>
+        <Building size={560} />
+      </Draw>
+      <T {...I.sig} text="THE SIGNAL" x={900} y={260} fontSize={120} color={P.ink} />
+      <Draw {...I.mag} x={470} y={430} width={420} height={420}>
+        <Magnifier size={420} />
+      </Draw>
+      <Draw {...I.q} x={1330} y={440} width={220} height={308}>
+        <QMark width={220} />
+      </Draw>
     </Beat>
   </PaperSurface>
 );
