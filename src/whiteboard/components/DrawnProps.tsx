@@ -12,7 +12,7 @@ export const INK = {stroke: P.ink, strokeLinecap: "round", strokeLinejoin: "roun
 export const Draw: React.FC<
   Omit<React.ComponentProps<typeof DrawOn>, "src"> & {children: React.ReactNode}
 > = ({children, ...rest}) => (
-  <DrawOn bands={4} hand={{scale: 0.55}} {...rest}>
+  <DrawOn bands={4} {...rest}>
     {children}
   </DrawOn>
 );
