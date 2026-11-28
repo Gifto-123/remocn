@@ -16,12 +16,16 @@ export type HandSlot = {
   hand?: boolean;
 };
 
+/** Hand size for the 1080×1920 canvas. Tune once here; every planned slot carries it. */
+export const HAND_SCALE = 0.42;
+
 export type PlannedSlot = {
   delay: number;
   duration: number;
   handEnter: number;
   handExit: number;
   showHand: boolean;
+  hand: {scale: number};
 };
 
 export type PlanOptions = {
@@ -57,7 +61,14 @@ export const planHand = <K extends string>(
         console.warn(`[handPlan:${label}] "${key}" slips ${slip}f (at ${s.at}). Shorten earlier draws or move it.`);
       }
     }
-    out[key] = {delay, duration: s.draw, handEnter: enter, handExit: exit, showHand};
+    out[key] = {
+      delay,
+      duration: s.draw,
+      handEnter: enter,
+      handExit: exit,
+      showHand,
+      hand: {scale: HAND_SCALE},
+    };
   }
 
   if (limit !== undefined && free > limit) {

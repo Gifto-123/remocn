@@ -12,6 +12,25 @@
 - Implement the scene at `src/compositions/<scene>.tsx`, then register it in `src/Root.tsx`.
 - Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active scene.
 
+## Canvas lock (mandatory)
+
+- Format: 9:16 portrait, 1080×1920, 30fps, YouTube Shorts. Every composition uses `CANVAS_PRESETS.youtubeShort` for width, height and fps. Never use `youtubeLong`.
+- Safe zone (Shorts UI overlays): all text and key visuals inside x 60–960, y 200–1480. Backgrounds may bleed to the edges.
+- One centered column. Stack vertically; no side-by-side layouts.
+- Text `fontSize ≥ 80`. Hero numbers `≥ 200`.
+
+## Style lock (mandatory)
+
+- Source of truth: `public/assets/reference-imgs/`. Read it before choosing or generating any asset. Match it exactly.
+- Look: flat vector cartoon on cream paper (`EDITORIAL_PALETTE.paper`), thick dark outlines, flat fills. No gradients, shading, textures, glow, haze, bokeh, film grain or photorealism. One subject per image. At most a soft oval ground shadow.
+- Palette: sage green, terracotta/orange, slate blue, mustard yellow, ink-black outline. Crimson only for negatives.
+- Characters: round head, stick arms and legs, flat-colour torso, minimal face. Base is `character-man.png`, with the same proportions in every scene.
+- Objects and icons: like the icon-sheet references (thick outline, flat fills).
+- Reuse `hand-pen.png`, `money-stack-color.png` and `money-stack-sketch.png`.
+- AI image spec: 1080×1920 portrait, or a square cutout on a transparent background. Prompt base: `flat vector sticker illustration, thick black outline, flat fills in sage green, terracotta, slate blue and mustard, cream paper background, single subject centered, 9:16 portrait, no text, no gradients, no photorealism`.
+- Banned: dark cinematic photos, stock photography, frames or boxes around images on paper.
+- Only type D evidence screenshots may be photoreal.
+
 ## Hand rules (mandatory)
 
 - One hand per scene. Route all pen actions—images, text, and annotations—through `planHand()`; never hardcode `delay` on a hand element.
@@ -27,11 +46,10 @@
 
 ## Layout rules (mandatory)
 
-- `Pic` occupies a `size × size` square; its tinted background is visible. No text or other element may enter that box: text `x ≥ pic.x + size + 40`, or text right edge `≤ pic.x − 40`.
-- Text width ≈ `0.7 × fontSize × chars` (Manrope 800 caps). Keep right edge `≤ 1880`.
+- `Pic` is a `size × size` square, `size ≤ 900`, centered at `x = (1080 − size) / 2`. No text may enter its box: text `y ≥ pic.y + size + 40`, or text bottom `≤ pic.y − 40`.
+- Text width ≈ `0.7 × fontSize × chars` (Manrope 800 caps). Center it at `x = (1080 − width) / 2`. Left edge `≥ 60`, right edge `≤ 960`. If it doesn't fit, cut words or break the line; never go below `fontSize 80`.
 - Stacked lines: next `y ≥ prev y + 1.2 × prev fontSize`.
-- Side-by-side columns around a centered `Pic`: size the `Pic` so columns clear its box by 40px.
-- Before finishing, check each beat's final frame in Studio; fix overlap by moving `x`/`y`/`size`, never by hiding the hand.
+- Before finishing, check each beat's final frame in Studio. Fix overlap by moving `x`/`y`/`size`, never by hiding the hand.
 
 ## Text density rules (mandatory)
 
@@ -45,10 +63,10 @@
 
 Every beat uses exactly one of four visual types. Classify each beat from its narration before choosing assets or components. No other types. AI-generated images are allowed only for types A and C.
 
-### A. Cinematic financial imagery
+### A. Hook and story imagery
 
 - Use for: hooks, company introductions, market crashes, economic events, storytelling.
-- Hooks and transitions only. Full-bleed with a dark overlay; never a tile beside text.
+- Style-lock illustration (character + object), full-bleed 9:16 on paper. No dark overlay, no photoreal.
 
 ### B. Animated financial data
 
@@ -58,7 +76,7 @@ Every beat uses exactly one of four visual types. Classify each beat from its na
 ### C. Editorial illustrations
 
 - Use for abstract concepts: inflation, institutional investors, market manipulation, economic pressure.
-- Prefer hand-drawn diagrams (`DrawOn`/SVG paths). If an AI image is used: flat ink illustration, one subject, transparent background (cutout), no frame, no scene, matching the paper style. No rotation, no multiply blend, no dark photos on paper.
+- Prefer hand-drawn diagrams (`DrawOn`/SVG paths). If an AI image is used, follow the style lock: one subject, transparent cutout, no frame, no rotation, no multiply blend.
 
 ### D. Evidence and documentary visuals
 
