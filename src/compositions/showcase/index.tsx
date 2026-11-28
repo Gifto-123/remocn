@@ -1,7 +1,7 @@
 import React from "react";
-import {CANVAS_PRESETS, PaperSurface} from "../../whiteboard";
-import {EDITORIAL_PALETTE as P} from "../../whiteboard/components/EditorialCard";
-import {Beat} from "../../whiteboard/components/SceneKit";
+import {CATEGORIES} from "../../whiteboard/categories";
+import {CANVAS_PRESETS, EDITORIAL_PALETTE as P} from "../../whiteboard/core";
+import {Beat, PaperSurface} from "../../whiteboard/layout";
 import {SECTIONS, type Section} from "./sections";
 
 export const SHOWCASE_WIDTH = CANVAS_PRESETS.youtubeShort.width;
@@ -44,5 +44,11 @@ export const sectionComponent = (section: Section): React.FC => {
   Single.displayName = `Showcase(${section.id})`;
   return Single;
 };
+
+/** Sections grouped by category, in CATEGORIES order. Drives the Studio folders. */
+export const SECTION_GROUPS = CATEGORIES.map((category) => ({
+  category,
+  sections: SECTIONS.filter((s) => s.category === category.id),
+})).filter((g) => g.sections.length > 0);
 
 export {SECTIONS};

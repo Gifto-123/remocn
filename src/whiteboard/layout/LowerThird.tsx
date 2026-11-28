@@ -1,6 +1,6 @@
 import React from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "./components/EditorialCard";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "../core/theme";
 
 export type LowerThirdProps = {
   /** Source text, e.g. "SiTime · SEC filing". */

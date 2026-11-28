@@ -4,8 +4,8 @@ import type {
   TransitionPresentation,
   TransitionPresentationComponentProps,
 } from "@remotion/transitions";
-import {HandPen, type HandPenProps} from "./HandPen";
-import {reveal} from "./path";
+import {HandPen, type HandPenProps} from "../core/HandPen";
+import {reveal} from "../core/path";
 
 /**
  * Whiteboard scene transitions, as custom presentations for @remotion/transitions:

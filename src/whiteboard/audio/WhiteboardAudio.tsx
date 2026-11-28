@@ -6,8 +6,8 @@ import {
   delayRender,
   useVideoConfig,
 } from "remotion";
-import {whiteboardSlots, type WhiteboardItem} from "./Whiteboard";
-import {type CameraKeyframe} from "./WhiteboardCamera";
+import {whiteboardSlots, type WhiteboardItem} from "../motion/Whiteboard";
+import {type CameraKeyframe} from "../motion/WhiteboardCamera";
 import {
   decodeWavBytes,
   renderMasterAudio,

@@ -1,6 +1,6 @@
 import React from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {HandPen, type HandPenProps} from "./HandPen";
+import {HandPen, type HandPenProps} from "../core/HandPen";
 
 /**
  * Hand-drawn annotations: an arrow, a circle and an underline.

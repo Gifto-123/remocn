@@ -6,10 +6,10 @@ import {
   polylineLength,
   type Point,
   type Stroke,
-} from "./Annotations";
-import {HandPen, type HandPenProps} from "./HandPen";
-import {MARKER_FONT_STACK} from "./MarkerText";
-import {DEFAULT_AWAY} from "./timeline";
+} from "../annotations/Annotations";
+import {HandPen, type HandPenProps} from "../core/HandPen";
+import {MARKER_FONT_STACK} from "../core/MarkerText";
+import {DEFAULT_AWAY} from "../core/timeline";
 
 export type BarDatum = {
   label: string;

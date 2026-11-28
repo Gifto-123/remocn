@@ -1,5 +1,5 @@
 import React from "react";
-import {EDITORIAL_PALETTE as P} from "./EditorialCard";
+import {EDITORIAL_PALETTE as P} from "../core/theme";
 import {INK} from "./DrawnProps";
 
 /**

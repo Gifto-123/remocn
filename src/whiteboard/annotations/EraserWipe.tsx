@@ -1,8 +1,8 @@
 import React from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {HandPen, type HandPenProps} from "./HandPen";
-import {eraseReveal, type RevealMode} from "./path";
-import {DEFAULT_AWAY} from "./timeline";
+import {HandPen, type HandPenProps} from "../core/HandPen";
+import {eraseReveal, type RevealMode} from "../core/path";
+import {DEFAULT_AWAY} from "../core/timeline";
 
 export type EraserWipeProps = {
   /** Content currently on the board that will be erased once `delay` arrives. */

@@ -1,12 +1,19 @@
-export {DrawOn, drawOnDuration, type DrawOnProps} from "./DrawOn";
-export {HandPen, type HandPenProps} from "./HandPen";
+/**
+ * Public barrel. Names exported here are the stable, headless-safe API (scripts/export-sfx.mjs
+ * loads this file under Node). Components are organised by category folder; see categories.ts.
+ * Compositions can also import a whole category: "../../whiteboard/data", ".../layout", etc.
+ * fonts.ts stays at this level on purpose: export-sfx skips it by path.
+ */
+export {CATEGORIES, type CategoryId} from "./categories";
+export {DrawOn, drawOnDuration, type DrawOnProps} from "./core/DrawOn";
+export {HandPen, type HandPenProps} from "./core/HandPen";
 export {
   MarkerText,
   markerTextDuration,
   MARKER_FONT_STACK,
   type MarkerPart,
   type MarkerTextProps,
-} from "./MarkerText";
+} from "./core/MarkerText";
 export {
   MarkerList,
   MarkerParagraph,
@@ -17,7 +24,7 @@ export {
   type MarkerListProps,
   type MarkerParagraphProps,
   type TextAlign,
-} from "./MarkerParagraph";
+} from "./core/MarkerParagraph";
 export {
   Whiteboard,
   prepareWhiteboardItems,
@@ -42,7 +49,7 @@ export {
   type UnderlineItem,
   type WhiteboardItem,
   type WhiteboardProps,
-} from "./Whiteboard";
+} from "./motion/Whiteboard";
 export {
   extractMotionTrace,
   extractMultiSceneTrace,
@@ -55,14 +62,14 @@ export {
   type MultiSceneSpec,
   type MultiSceneTraceOptions,
   type PenMode,
-} from "./motionTrace";
+} from "./audio/motionTrace";
 export {
   CANVAS_PRESETS,
   presetForAspect,
   type AspectRatio,
   type CanvasPreset,
   type CanvasPresetName,
-} from "./presets";
+} from "./core/presets";
 export {
   decodeWavBytes,
   renderMasterAudio,
@@ -71,7 +78,7 @@ export {
   type FoleySample,
   type MasterAudioOptions,
   type MasterAudioResult,
-} from "./masterAudio";
+} from "./audio/masterAudio";
 export {
   HandBarChart,
   HandLineChart,
@@ -83,7 +90,7 @@ export {
   type HandBarChartProps,
   type HandLineChartProps,
   type LineSeries,
-} from "./Charts";
+} from "./data/Charts";
 export {
   CandlestickChart,
   candlestickChartDuration,
@@ -91,14 +98,14 @@ export {
   type CandlestickChartGeometry,
   type CandlestickChartProps,
   type CandlestickDatum,
-} from "./CandlestickChart";
+} from "./data/CandlestickChart";
 export {
   NumberCounter,
   numberCounterDuration,
   formatNumberCounter,
   type NumberCounterProps,
   type NumberCounterFormat,
-} from "./NumberCounter";
+} from "./data/NumberCounter";
 export {
   MoneyFlow,
   moneyFlowDuration,
@@ -107,7 +114,7 @@ export {
   type MoneyFlowNode,
   type MoneyFlowConnection,
   type MoneyFlowPoint,
-} from "./MoneyFlow";
+} from "./data/MoneyFlow";
 export {
   SpeechBubble,
   ThoughtBubble,
@@ -117,13 +124,13 @@ export {
   type BubbleVariant,
   type SpeechBubbleProps,
   type ThoughtBubbleProps,
-} from "./SpeechBubble";
+} from "./illustration/SpeechBubble";
 export {
   HighlighterSweep,
   highlighterDuration,
   highlighterFrames,
   type HighlighterSweepProps,
-} from "./HighlighterSweep";
+} from "./annotations/HighlighterSweep";
 export {
   HandArrow,
   HandBracket,
@@ -157,7 +164,7 @@ export {
   type Point,
   type StrikeVariant,
   type Stroke,
-} from "./Annotations";
+} from "./annotations/Annotations";
 export {
   handWipe,
   whiteboardSlide,
@@ -166,7 +173,7 @@ export {
   type SlideOptions,
   type TransitionDirection,
   type WipeOptions,
-} from "./Transitions";
+} from "./motion/Transitions";
 export {
   eraseReveal,
   reveal,
@@ -175,20 +182,20 @@ export {
   type RevealMode,
   type RevealOptions,
   type RevealState,
-} from "./path";
+} from "./core/path";
 export {
   EraserWipe,
   eraserWipeDuration,
   type EraserWipeProps,
-} from "./EraserWipe";
-export {ASSETS, HAND_PEN, fit, type AssetInfo} from "./assets";
+} from "./annotations/EraserWipe";
+export {ASSETS, HAND_PEN, fit, type AssetInfo} from "./core/assets";
 export {
   ComparisonTable,
   comparisonTableDuration,
   comparisonTableItems,
   type ComparisonRow,
   type ComparisonTableProps,
-} from "./ComparisonTable";
+} from "./data/ComparisonTable";
 export {
   WhiteboardCamera,
   cameraAt,
@@ -196,14 +203,14 @@ export {
   type CameraKeyframe,
   type CameraPose,
   type WhiteboardCameraProps,
-} from "./WhiteboardCamera";
+} from "./motion/WhiteboardCamera";
 export {
   InkBoilFilter,
   PaperSurface,
   type InkBoilFilterProps,
   type PaperSurfaceProps,
   type PaperVariant,
-} from "./Surface";
+} from "./layout/Surface";
 export {
   EraserSound,
   MarkerSound,
@@ -219,7 +226,7 @@ export {
   type MasterWhiteboardAudioProps,
   type WhiteboardAudioProps,
   type WhooshSoundProps,
-} from "./WhiteboardAudio";
+} from "./audio/WhiteboardAudio";
 export {
   PING_SECONDS,
   POP_SECONDS,
@@ -241,9 +248,9 @@ export {
   type PopOpts,
   type Stereo,
   type WhooshOpts,
-} from "./sfxEngine";
+} from "./audio/sfxEngine";
 // fonts.ts is NOT re-exported on purpose: it needs @remotion/google-fonts.
 
-export {RoundedFrame, roundedFrameDuration, type RoundedFrameProps} from "./RoundedFrame";
-export {planHand, type HandSlot, type PlannedSlot} from "./handPlan";
-export {LowerThird, type LowerThirdProps} from "./LowerThird";
+export {RoundedFrame, roundedFrameDuration, type RoundedFrameProps} from "./annotations/RoundedFrame";
+export {planHand, type HandSlot, type PlannedSlot} from "./core/handPlan";
+export {LowerThird, type LowerThirdProps} from "./layout/LowerThird";

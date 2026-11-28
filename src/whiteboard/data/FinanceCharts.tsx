@@ -1,7 +1,7 @@
 import React, {useId} from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {EDITORIAL_PALETTE as P} from "./EditorialCard";
-import {INK} from "./DrawnProps";
+import {EDITORIAL_PALETTE as P} from "../core/theme";
+import {INK} from "../illustration/DrawnProps";
 
 /**
  * Finance charts, no labels (density rules: scenes add ≤2 texts).

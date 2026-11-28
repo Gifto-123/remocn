@@ -26,27 +26,27 @@ import {
   type Point,
   type StrikeVariant,
   type Stroke,
-} from "./Annotations";
-import {HandPen, type HandPenProps} from "./HandPen";
+} from "../annotations/Annotations";
+import {HandPen, type HandPenProps} from "../core/HandPen";
 import {
   MARKER_FONT_STACK,
   MarkerTextContent,
   markerParts,
   markerTextDuration,
   type MarkerPart,
-} from "./MarkerText";
+} from "../core/MarkerText";
 import {
   FRAME_DEFAULTS,
   RoundedFrameSvg,
   frameGeometry,
   pointOnFrame,
-} from "./RoundedFrame";
+} from "../annotations/RoundedFrame";
 import {
   HIGHLIGHT_DEFAULTS,
   HighlighterGraphic,
   highlightPenAt,
   highlighterFrames,
-} from "./HighlighterSweep";
+} from "../annotations/HighlighterSweep";
 import {
   BUBBLE_DEFAULTS,
   BubbleGraphic,
@@ -55,7 +55,7 @@ import {
   buildThoughtBubbleGeometry,
   type BubbleTailSide,
   type BubbleVariant,
-} from "./SpeechBubble";
+} from "../illustration/SpeechBubble";
 import {
   BarChartGraphic,
   CHART_DEFAULTS,
@@ -64,8 +64,8 @@ import {
   buildLineChartGeometry,
   type BarDatum,
   type LineSeries,
-} from "./Charts";
-import {reveal} from "./path";
+} from "../data/Charts";
+import {reveal} from "../core/path";
 import {
   DEFAULT_AWAY,
   buildSlots,
@@ -74,7 +74,7 @@ import {
   timelineFrames,
   type TimelineEntry,
   type TimelineOptions,
-} from "./timeline";
+} from "../core/timeline";
 
 export type ImageItem = {
   type: "image";

@@ -10,7 +10,7 @@ import {
 } from "remotion";
 import {createTikTokStyleCaptions, type Caption, type TikTokPage} from "@remotion/captions";
 import {fitText} from "@remotion/layout-utils";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "./EditorialCard";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "../core/theme";
 
 /**
  * Word-highlight captions for Shorts (1080x1920). Official Remotion flow:

@@ -1,6 +1,6 @@
 import React from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {HandPen, type HandPenProps} from "./HandPen";
+import {HandPen, type HandPenProps} from "../core/HandPen";
 
 export type RoundedFrameProps = {
   /** Top-left of the frame inside the parent, in px. The element is position: absolute. */

@@ -1,6 +1,6 @@
 import React from "react";
-import {DrawOn} from "../DrawOn";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "./EditorialCard";
+import {DrawOn} from "../core/DrawOn";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "../core/theme";
 
 /**
  * Shared code-drawn props (SVG). Reveal them with <Draw> so the hand draws them.

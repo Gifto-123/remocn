@@ -3,56 +3,69 @@ import {AbsoluteFill, staticFile} from "remotion";
 import {TransitionSeries, linearTiming} from "@remotion/transitions";
 import type {Caption} from "@remotion/captions";
 import {
+  EDITORIAL_FONTS,
+  EDITORIAL_PALETTE as P,
   ASSETS,
-  CandlestickChart,
-  ComparisonTable,
   DrawOn,
+  MarkerList,
+  MarkerParagraph,
+  fit,
+  planHand,
+  type PlannedSlot,
+} from "../../whiteboard/core";
+import {
   EraserWipe,
   HandArrow,
-  HandBarChart,
   HandBracket,
   HandCheck,
   HandCircle,
   HandCross,
   HandDivider,
-  HandLineChart,
   HandStrike,
   HandUnderline,
   HighlighterSweep,
-  LowerThird,
-  MarkerList,
-  MarkerParagraph,
-  MoneyFlow,
   RoundedFrame,
-  SpeechBubble,
-  ThoughtBubble,
+} from "../../whiteboard/annotations";
+import {
+  CandlestickChart,
+  CompanyBuilding,
+  ComparisonTable,
+  CompoundGrowth,
+  DonutChart,
+  Gauge,
+  HandBarChart,
+  HandLineChart,
+  MoneyFlow,
+  ProgressBar,
+  comparisonTableDuration,
+  type CandlestickDatum,
+} from "../../whiteboard/data";
+import * as Illus from "../../whiteboard/illustration";
+import {Draw, Person, SpeechBubble, ThoughtBubble} from "../../whiteboard/illustration";
+import {
+  CT,
+  Captions,
+  CharacterSprite,
+  EditorialCard,
+  LowerThird,
+  Num,
+  Pic,
+  T,
+  YearBadge,
+  centerX,
+  fitFont,
+  textW,
+} from "../../whiteboard/layout";
+import {
   Whiteboard,
   WhiteboardCamera,
-  comparisonTableDuration,
-  fit,
   handWipe,
   whiteboardDuration,
   whiteboardSlide,
   whiteboardWipe,
-  type CandlestickDatum,
   type WhiteboardItem,
-} from "../../whiteboard";
-import {CompanyBuilding} from "../../whiteboard/CompanyBuilding";
-import {planHand, type PlannedSlot} from "../../whiteboard/handPlan";
-import {Captions} from "../../whiteboard/components/Captions";
-import {
-  EDITORIAL_FONTS,
-  EDITORIAL_PALETTE as P,
-  EditorialCard,
-  YearBadge,
-  CharacterSprite,
-} from "../../whiteboard/components/EditorialCard";
-import {Draw} from "../../whiteboard/components/DrawnProps";
-import * as Drawn from "../../whiteboard/components/DrawnProps";
-import * as Money from "../../whiteboard/components/MoneyProps";
-import {CompoundGrowth, DonutChart, Gauge, ProgressBar} from "../../whiteboard/components/FinanceCharts";
-import {Person} from "../../whiteboard/components/Person";
-import {CT, Num, Pic, T, centerX, fitFont, textW} from "../../whiteboard/components/SceneKit";
+} from "../../whiteboard/motion";
+import type {CategoryId} from "../../whiteboard/categories";
 
 /**
  * Component showcase. One section per component group, 9:16 (1080×1920).
@@ -64,6 +77,7 @@ import {CT, Num, Pic, T, centerX, fitFont, textW} from "../../whiteboard/compone
 export type Section = {
   id: string;
   title: string;
+  category: CategoryId;
   duration: number;
   Body: React.FC;
 };
@@ -618,12 +632,12 @@ const MA = planHand(GRID_SLOTS, {label: "showcase/money-props-a", limit: 200});
 const MoneyPropsABody: React.FC = () => (
   <>
     <Label {...MA.l} text="MoneyProps" />
-    <Cell slot={MA.g0} i={0}><Money.Coin size={CELL} /></Cell>
-    <Cell slot={MA.g1} i={1}><Money.CoinStack size={CELL} /></Cell>
-    <Cell slot={MA.g2} i={2}><Money.PiggyBank size={CELL} /></Cell>
-    <Cell slot={MA.g3} i={3}><Money.Wallet size={CELL} /></Cell>
-    <Cell slot={MA.g4} i={4}><Money.CreditCard size={CELL} /></Cell>
-    <Cell slot={MA.g5} i={5}><Money.House size={CELL} /></Cell>
+    <Cell slot={MA.g0} i={0}><Illus.Coin size={CELL} /></Cell>
+    <Cell slot={MA.g1} i={1}><Illus.CoinStack size={CELL} /></Cell>
+    <Cell slot={MA.g2} i={2}><Illus.PiggyBank size={CELL} /></Cell>
+    <Cell slot={MA.g3} i={3}><Illus.Wallet size={CELL} /></Cell>
+    <Cell slot={MA.g4} i={4}><Illus.CreditCard size={CELL} /></Cell>
+    <Cell slot={MA.g5} i={5}><Illus.House size={CELL} /></Cell>
   </>
 );
 
@@ -631,12 +645,12 @@ const MBS = planHand(GRID_SLOTS, {label: "showcase/money-props-b", limit: 200});
 const MoneyPropsBBody: React.FC = () => (
   <>
     <Label {...MBS.l} text="MoneyProps" />
-    <Cell slot={MBS.g0} i={0}><Money.Car size={CELL} /></Cell>
-    <Cell slot={MBS.g1} i={1}><Money.Receipt size={CELL} /></Cell>
-    <Cell slot={MBS.g2} i={2}><Money.Calendar size={CELL} /></Cell>
-    <Cell slot={MBS.g3} i={3}><Money.Safe size={CELL} /></Cell>
-    <Cell slot={MBS.g4} i={4}><Money.BallChain size={CELL} /></Cell>
-    <Cell slot={MBS.g5} i={5}><Money.Badge size={CELL} kind="dollar" /></Cell>
+    <Cell slot={MBS.g0} i={0}><Illus.Car size={CELL} /></Cell>
+    <Cell slot={MBS.g1} i={1}><Illus.Receipt size={CELL} /></Cell>
+    <Cell slot={MBS.g2} i={2}><Illus.Calendar size={CELL} /></Cell>
+    <Cell slot={MBS.g3} i={3}><Illus.Safe size={CELL} /></Cell>
+    <Cell slot={MBS.g4} i={4}><Illus.BallChain size={CELL} /></Cell>
+    <Cell slot={MBS.g5} i={5}><Illus.Badge size={CELL} kind="dollar" /></Cell>
   </>
 );
 
@@ -644,12 +658,12 @@ const DA = planHand(GRID_SLOTS, {label: "showcase/drawn-props-a", limit: 200});
 const DrawnPropsABody: React.FC = () => (
   <>
     <Label {...DA.l} text="DrawnProps" />
-    <Cell slot={DA.g0} i={0}><Drawn.SplitCard parts={3} width={CELL - 60} /></Cell>
-    <Cell slot={DA.g1} i={1}><Drawn.QMark width={CELL - 60} /></Cell>
-    <Cell slot={DA.g2} i={2}><Drawn.MemoryCard size={CELL} /></Cell>
-    <Cell slot={DA.g3} i={3}><Drawn.Chip size={CELL} /></Cell>
-    <Cell slot={DA.g4} i={4}><Drawn.Jet size={CELL} /></Cell>
-    <Cell slot={DA.g5} i={5}><Drawn.CornCan size={CELL} /></Cell>
+    <Cell slot={DA.g0} i={0}><Illus.SplitCard parts={3} width={CELL - 60} /></Cell>
+    <Cell slot={DA.g1} i={1}><Illus.QMark width={CELL - 60} /></Cell>
+    <Cell slot={DA.g2} i={2}><Illus.MemoryCard size={CELL} /></Cell>
+    <Cell slot={DA.g3} i={3}><Illus.Chip size={CELL} /></Cell>
+    <Cell slot={DA.g4} i={4}><Illus.Jet size={CELL} /></Cell>
+    <Cell slot={DA.g5} i={5}><Illus.CornCan size={CELL} /></Cell>
   </>
 );
 
@@ -667,11 +681,11 @@ const DBS = planHand(
 const DrawnPropsBBody: React.FC = () => (
   <>
     <Label {...DBS.l} text="DrawnProps" />
-    <Cell slot={DBS.g0} i={0}><Drawn.Building size={CELL} tags={2} /></Cell>
-    <Cell slot={DBS.g1} i={1}><Drawn.Bill value={10} width={CELL} /></Cell>
-    <Cell slot={DBS.g2} i={2}><Drawn.Magnifier size={CELL} /></Cell>
-    <Cell slot={DBS.g3} i={3}><Drawn.Equals size={CELL} /></Cell>
-    <Cell slot={DBS.g4} i={4}><Drawn.Stamp text="SOLD" width={CELL} height={200} fontSize={90} /></Cell>
+    <Cell slot={DBS.g0} i={0}><Illus.Building size={CELL} tags={2} /></Cell>
+    <Cell slot={DBS.g1} i={1}><Illus.Bill value={10} width={CELL} /></Cell>
+    <Cell slot={DBS.g2} i={2}><Illus.Magnifier size={CELL} /></Cell>
+    <Cell slot={DBS.g3} i={3}><Illus.Equals size={CELL} /></Cell>
+    <Cell slot={DBS.g4} i={4}><Illus.Stamp text="SOLD" width={CELL} height={200} fontSize={90} /></Cell>
   </>
 );
 
@@ -804,13 +818,13 @@ const CameraBody: React.FC = () => (
   >
     <Label {...WC.l} text="WhiteboardCamera" />
     <div style={{position: "absolute", left: 120, top: 420}}>
-      <Money.Coin size={300} />
+      <Illus.Coin size={300} />
     </div>
     <div style={{position: "absolute", left: 660, top: 820}}>
-      <Money.Safe size={300} />
+      <Illus.Safe size={300} />
     </div>
     <div style={{position: "absolute", left: 120, top: 1160}}>
-      <Money.Calendar size={300} />
+      <Illus.Calendar size={300} />
     </div>
   </WhiteboardCamera>
 );
@@ -862,36 +876,42 @@ const EditorialCardBody: React.FC = () => (
   </>
 );
 
-/* ---------- registry ---------- */
+/* ---------- registry (grouped by category; order = reel order) ---------- */
 export const SECTIONS: Section[] = [
-  {id: "marker-text", title: "MarkerText", duration: 120, Body: MarkerTextBody},
-  {id: "marker-list", title: "MarkerList", duration: 170, Body: MarkerListBody},
-  {id: "marker-paragraph", title: "MarkerParagraph", duration: 170, Body: MarkerParagraphBody},
-  {id: "draw-on", title: "DrawOn", duration: 140, Body: DrawOnBody},
-  {id: "pic", title: "Pic", duration: 130, Body: PicBody},
-  {id: "annotations-a", title: "Annotations 1/2", duration: 190, Body: AnnotationsABody},
-  {id: "annotations-b", title: "Annotations 2/2", duration: 190, Body: AnnotationsBBody},
-  {id: "highlighter-sweep", title: "HighlighterSweep", duration: 150, Body: HighlighterBody},
-  {id: "number-counter", title: "NumberCounter", duration: 170, Body: NumberCounterBody},
-  {id: "hand-bar-chart", title: "HandBarChart", duration: 150, Body: HandBarChartBody},
-  {id: "hand-line-chart", title: "HandLineChart", duration: 150, Body: HandLineChartBody},
-  {id: "candlestick-chart", title: "CandlestickChart", duration: 170, Body: CandlestickBody},
-  {id: "money-flow", title: "MoneyFlow", duration: 190, Body: MoneyFlowBody},
-  {id: "comparison-table", title: "ComparisonTable", duration: 40 + TBL_TOTAL + 24, Body: ComparisonTableBody},
-  {id: "company-building", title: "CompanyBuilding", duration: 170, Body: CompanyBuildingBody},
-  {id: "bubbles", title: "SpeechBubble / ThoughtBubble", duration: 190, Body: BubblesBody},
-  {id: "person", title: "Person", duration: 230, Body: PersonBody},
-  {id: "finance-charts-a", title: "FinanceCharts 1/2", duration: 200, Body: FinanceAChartsBody},
-  {id: "finance-charts-b", title: "FinanceCharts 2/2", duration: 200, Body: FinanceBChartsBody},
-  {id: "money-props-a", title: "MoneyProps 1/2", duration: 200, Body: MoneyPropsABody},
-  {id: "money-props-b", title: "MoneyProps 2/2", duration: 200, Body: MoneyPropsBBody},
-  {id: "drawn-props-a", title: "DrawnProps 1/2", duration: 200, Body: DrawnPropsABody},
-  {id: "drawn-props-b", title: "DrawnProps 2/2", duration: 190, Body: DrawnPropsBBody},
-  {id: "rounded-frame", title: "RoundedFrame / LowerThird", duration: 160, Body: RoundedFrameBody},
-  {id: "eraser-wipe", title: "EraserWipe", duration: 170, Body: EraserWipeBody},
-  {id: "captions", title: "Captions", duration: 150, Body: CaptionsBody},
-  {id: "transitions", title: "Transitions", duration: TRANSITIONS_DURATION, Body: TransitionsBody},
-  {id: "whiteboard-camera", title: "WhiteboardCamera", duration: 170, Body: CameraBody},
-  {id: "whiteboard", title: "Whiteboard", duration: 40 + WB_TOTAL + 24, Body: WhiteboardBody},
-  {id: "editorial-card", title: "EditorialCard", duration: 150, Body: EditorialCardBody},
+  // core
+  {id: "marker-text", title: "MarkerText", category: "core", duration: 120, Body: MarkerTextBody},
+  {id: "marker-list", title: "MarkerList", category: "core", duration: 170, Body: MarkerListBody},
+  {id: "marker-paragraph", title: "MarkerParagraph", category: "core", duration: 170, Body: MarkerParagraphBody},
+  {id: "draw-on", title: "DrawOn", category: "core", duration: 140, Body: DrawOnBody},
+  // annotations
+  {id: "annotations-a", title: "Annotations 1/2", category: "annotations", duration: 190, Body: AnnotationsABody},
+  {id: "annotations-b", title: "Annotations 2/2", category: "annotations", duration: 190, Body: AnnotationsBBody},
+  {id: "highlighter-sweep", title: "HighlighterSweep", category: "annotations", duration: 150, Body: HighlighterBody},
+  {id: "rounded-frame", title: "RoundedFrame / LowerThird", category: "annotations", duration: 160, Body: RoundedFrameBody},
+  {id: "eraser-wipe", title: "EraserWipe", category: "annotations", duration: 170, Body: EraserWipeBody},
+  // data
+  {id: "number-counter", title: "NumberCounter", category: "data", duration: 170, Body: NumberCounterBody},
+  {id: "hand-bar-chart", title: "HandBarChart", category: "data", duration: 150, Body: HandBarChartBody},
+  {id: "hand-line-chart", title: "HandLineChart", category: "data", duration: 150, Body: HandLineChartBody},
+  {id: "candlestick-chart", title: "CandlestickChart", category: "data", duration: 170, Body: CandlestickBody},
+  {id: "money-flow", title: "MoneyFlow", category: "data", duration: 190, Body: MoneyFlowBody},
+  {id: "comparison-table", title: "ComparisonTable", category: "data", duration: 40 + TBL_TOTAL + 24, Body: ComparisonTableBody},
+  {id: "company-building", title: "CompanyBuilding", category: "data", duration: 170, Body: CompanyBuildingBody},
+  {id: "finance-charts-a", title: "FinanceCharts 1/2", category: "data", duration: 200, Body: FinanceAChartsBody},
+  {id: "finance-charts-b", title: "FinanceCharts 2/2", category: "data", duration: 200, Body: FinanceBChartsBody},
+  // illustration
+  {id: "bubbles", title: "SpeechBubble / ThoughtBubble", category: "illustration", duration: 190, Body: BubblesBody},
+  {id: "person", title: "Person", category: "illustration", duration: 230, Body: PersonBody},
+  {id: "money-props-a", title: "MoneyProps 1/2", category: "illustration", duration: 200, Body: MoneyPropsABody},
+  {id: "money-props-b", title: "MoneyProps 2/2", category: "illustration", duration: 200, Body: MoneyPropsBBody},
+  {id: "drawn-props-a", title: "DrawnProps 1/2", category: "illustration", duration: 200, Body: DrawnPropsABody},
+  {id: "drawn-props-b", title: "DrawnProps 2/2", category: "illustration", duration: 190, Body: DrawnPropsBBody},
+  // layout
+  {id: "pic", title: "Pic", category: "layout", duration: 130, Body: PicBody},
+  {id: "captions", title: "Captions", category: "layout", duration: 150, Body: CaptionsBody},
+  {id: "editorial-card", title: "EditorialCard", category: "layout", duration: 150, Body: EditorialCardBody},
+  // motion
+  {id: "transitions", title: "Transitions", category: "motion", duration: TRANSITIONS_DURATION, Body: TransitionsBody},
+  {id: "whiteboard-camera", title: "WhiteboardCamera", category: "motion", duration: 170, Body: CameraBody},
+  {id: "whiteboard", title: "Whiteboard", category: "motion", duration: 40 + WB_TOTAL + 24, Body: WhiteboardBody},
 ];
