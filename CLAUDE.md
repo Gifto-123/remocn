@@ -4,12 +4,11 @@
 
 - Trigger: when the user types `start <short>` (for example, `start short1`), immediately execute the workflow for that short; do not ask which short.
 - Work on exactly one short per task. Each video is one short (`short1`, `short2`, …); no scenes, no long form.
-- Analyze narration audio and narration JSON in `public/narration/<short>/`; derive timing, beats, and visual requirements.
-- Study style references in `public/assets/reference-imgs/` before proposing visuals.
-- Assume required images are already generated and placed in `public/assets/<short>/`; inspect and use them.
-- Only generate Google Flow prompts when explicitly requested, using exactly: `(image 1 detailed prompt, image 2 detailed prompt, image 3 detailed prompt)`.
-- Compose with shared components via category barrels: `from "../whiteboard/<category>"` (see Component map). Preview any component in `src/compositions/showcase/`.
-- Implement the short at `src/compositions/<short>.tsx`, then register it in `src/Root.tsx`.
+- Phase 1 (analyze): read narration audio and narration JSON in `public/narration/<short>/`; study `public/assets/reference-imgs/`; derive timing, beats, visual requirements. Post beat sheet (see Beat sheet rules); wait for approval.
+- Phase 2 (prompts): after approval, if any beat needs AI images (types A, C only), output prompts in exactly this format, then stop: `(image 1 detailed prompt, image 2 detailed prompt, image 3 detailed prompt, ...)`, one per needed image, numbered in beat order. Never assume images exist. Skip the phase if no images needed.
+- User generates images and places them in `public/assets/<short>/`, then says so.
+- Phase 3 (verify assets): list `public/assets/<short>/`; inspect each image; check count, names, size/format vs the AI image spec and style lock. Report missing or off-spec images and stop until fixed.
+- Phase 4 (build): compose with shared components via category barrels: `from "../whiteboard/<category>"` (see Component map; preview any component in `src/compositions/showcase/`). Implement at `src/compositions/<short>.tsx`, register in `src/Root.tsx`.
 - Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active short.
 
 ## Canvas lock (mandatory)
