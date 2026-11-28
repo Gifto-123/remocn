@@ -19,6 +19,12 @@
 - Images must use the hand. Never set `showHand={false}` to fix overlap; fix the hand plan.
 - Fix every `[handPlan]` console warning before finishing the scene.
 
+## Beat sheet rules (mandatory)
+
+- Before any code, post a beat sheet table for the scene: beat | narration span | claim (≤8 words) | visual type (A–D) | exact visual | components/assets. Wait for approval before implementing.
+- One claim per beat.
+- Mute test: with no audio, a viewer must understand the beat's claim within 2 seconds. If not, redesign the visual.
+
 ## Layout rules (mandatory)
 
 - `Pic` occupies a `size × size` square; its tinted background is visible. No text or other element may enter that box: text `x ≥ pic.x + size + 40`, or text right edge `≤ pic.x − 40`.
@@ -37,24 +43,27 @@
 
 ## Visual type rules (mandatory)
 
-Every beat uses exactly one of four visual types. Classify each beat from its narration before choosing assets or components. No other types.
+Every beat uses exactly one of four visual types. Classify each beat from its narration before choosing assets or components. No other types. AI-generated images are allowed only for types A and C.
 
 ### A. Cinematic financial imagery
 
 - Use for: hooks, company introductions, market crashes, economic events, storytelling.
+- Hooks and transitions only. Full-bleed with a dark overlay; never a tile beside text.
 
 ### B. Animated financial data
 
 - Use for: stock movements, revenue, earnings, market capitalization, comparisons, statistics.
-- Build with chart/data primitives from `src/whiteboard/`.
+- Build in code with `src/whiteboard/` primitives (`Charts`, `CandlestickChart`, `NumberCounter`, `ComparisonTable`, `MoneyFlow`). Exact figures come from code, never from images. No AI images.
 
 ### C. Editorial illustrations
 
 - Use for abstract concepts: inflation, institutional investors, market manipulation, economic pressure.
+- Prefer hand-drawn diagrams (`DrawOn`/SVG paths). If an AI image is used: flat ink illustration, one subject, transparent background (cutout), no frame, no scene, matching the paper style. No rotation, no multiply blend, no dark photos on paper.
 
 ### D. Evidence and documentary visuals
 
 - Use for: headlines, company filings, financial reports, news events, historical evidence.
+- Use real screenshots or crops (filing excerpt, docket, headline) in `RoundedFrame`; mark the key line with `HighlighterSweep` or `HandCircle`. No AI images.
 
 # Remocn
 

@@ -35,7 +35,20 @@ import {
   SCENE5_HEIGHT,
   SCENE5_WIDTH,
 } from "./compositions/scene5";
-
+import {
+  Scene6,
+  SCENE6_DURATION,
+  SCENE6_FPS,
+  SCENE6_HEIGHT,
+  SCENE6_WIDTH,
+} from "./compositions/scene6";
+import {
+  Scene7,
+  SCENE7_DURATION,
+  SCENE7_FPS,
+  SCENE7_HEIGHT,
+  SCENE7_WIDTH,
+} from "./compositions/scene7";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -78,6 +91,22 @@ export const RemotionRoot: React.FC = () => {
         fps={SCENE5_FPS}
         width={SCENE5_WIDTH}
         height={SCENE5_HEIGHT}
+      />
+      <Composition
+        id="Scene6"
+        component={Scene6}
+        durationInFrames={SCENE6_DURATION}
+        fps={SCENE6_FPS}
+        width={SCENE6_WIDTH}
+        height={SCENE6_HEIGHT}
+      />
+      <Composition
+        id="Scene7"
+        component={Scene7}
+        durationInFrames={SCENE7_DURATION}
+        fps={SCENE7_FPS}
+        width={SCENE7_WIDTH}
+        height={SCENE7_HEIGHT}
       />
     </>
   );
