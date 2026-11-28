@@ -91,9 +91,29 @@ Remotion + React + TypeScript video project. Keep repository exploration focused
 
 - `public/assets/` — source images, fonts, audio, and other assets served through Remotion's `staticFile()`.
 - `src/compositions/` — individual video compositions and demos; add new scenes here.
-- `src/whiteboard/` — reusable whiteboard primitives, drawing effects, annotations, transitions, charts, camera, and audio helpers. `src/whiteboard/index.ts` is the public barrel export.
+- `src/whiteboard/` — reusable components, one folder per category (see Component map). `src/whiteboard/index.ts` is the stable root barrel; `src/whiteboard/categories.ts` is the category registry.
 - `src/Root.tsx` — Remotion composition registry/entry point. Register compositions here with `<Composition />`.
 - `src/Composition.tsx` — current shared whiteboard demo constants and composition implementation.
+- `src/compositions/showcase/` — live demo of every component (`ComponentShowcase` + one composition per component in Studio, grouped by category).
+
+## Component map
+
+Import a whole category in compositions: `from "../../whiteboard/data"`. Inside `src/whiteboard/` import sibling files directly (`../core/HandPen`), never a barrel.
+
+| Category | Visual type | Contents |
+|---|---|---|
+| `core/` | all | `DrawOn`, `HandPen`, `MarkerText`, `MarkerParagraph`/`MarkerList`, `planHand`, `path`, `timeline`, `assets`, `presets`, `theme` (palette, fonts) |
+| `annotations/` | D | `Hand*` (circle, underline, arrow, check, cross, strike, bracket, divider), `HighlighterSweep`, `EraserWipe`, `RoundedFrame` |
+| `illustration/` | A, C | `Person`, `SpeechBubble`/`ThoughtBubble`, `MoneyProps`, `DrawnProps` (`Draw`) |
+| `data/` | B | `HandBarChart`, `HandLineChart`, `CandlestickChart`, `NumberCounter`, `MoneyFlow`, `ComparisonTable`, `CompanyBuilding`, `FinanceCharts` |
+| `layout/` | all | `SceneKit` (`Beat`, `Pic`, `T`, `CT`, `Num`, `SAFE`), `PaperSurface`, `EditorialCard`, `LowerThird`, `Captions` |
+| `motion/` | all | `Whiteboard`, `WhiteboardCamera`, `Transitions` |
+| `audio/` | all | `WhiteboardAudio`, `sfxEngine`, `masterAudio`, `motionTrace` |
+
+- Layering, lower never imports higher: `core → annotations → illustration → data → layout → motion → audio`. Sole exception: `data/ComparisonTable` uses `motion/Whiteboard`.
+- New component: put it in the lowest category that fits, add one `export *` line to that folder's `index.ts`, add a showcase section in `src/compositions/showcase/sections.tsx` with its `category`.
+- New category: add it to `categories.ts`, create the folder and its `index.ts`.
+- `fonts.ts` stays at `src/whiteboard/` (`scripts/export-sfx.mjs` skips it by path). Root barrel names are a stable API; do not remove any.
 
 ## Architecture
 

@@ -1,11 +1,11 @@
 import React from "react";
-import {markerParts, type MarkerPart} from "./MarkerText";
+import {markerParts, type MarkerPart} from "../core/MarkerText";
 import {
   Whiteboard,
   whiteboardDuration,
   type WhiteboardItem,
   type WhiteboardProps,
-} from "./Whiteboard";
+} from "../motion/Whiteboard";
 
 export type ComparisonRow = {
   left: string | MarkerPart[];

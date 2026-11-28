@@ -5,19 +5,19 @@ import {
   handAt,
   timelineFrames,
   type TimelineOptions,
-} from "./timeline";
+} from "../core/timeline";
 import {
   prepareWhiteboardItems,
   type PreparedItem,
   type WhiteboardItem,
-} from "./Whiteboard";
-import {cameraAt, type CameraKeyframe} from "./WhiteboardCamera";
+} from "../motion/Whiteboard";
+import {cameraAt, type CameraKeyframe} from "../motion/WhiteboardCamera";
 import {
   CANVAS_PRESETS,
   presetForAspect,
   type AspectRatio,
   type CanvasPresetName,
-} from "./presets";
+} from "../core/presets";
 
 /**
  * motionTrace.ts — Stage 1 of the studio SFX pipeline.

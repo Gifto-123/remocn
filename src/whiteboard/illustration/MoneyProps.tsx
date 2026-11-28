@@ -1,5 +1,5 @@
 import React from "react";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "./EditorialCard";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE as P} from "../core/theme";
 import {INK} from "./DrawnProps";
 
 /** Personal-finance props. All 360x360 viewBox, flat fills, thick ink outline. Reveal with <Draw>. */

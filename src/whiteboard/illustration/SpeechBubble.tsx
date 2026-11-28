@@ -7,9 +7,9 @@ import {
   polylineLength,
   type Point,
   type Stroke,
-} from "./Annotations";
-import {HandPen, type HandPenProps} from "./HandPen";
-import {DEFAULT_AWAY} from "./timeline";
+} from "../annotations/Annotations";
+import {HandPen, type HandPenProps} from "../core/HandPen";
+import {DEFAULT_AWAY} from "../core/timeline";
 
 export type BubbleTailSide = "bottom" | "top" | "left" | "right";
 export type BubbleVariant = "speech" | "thought";

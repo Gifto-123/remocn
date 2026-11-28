@@ -1,7 +1,7 @@
 import React from "react";
 import {Easing, interpolate, useCurrentFrame} from "remotion";
-import {HandPen, type HandPenProps} from "./HandPen";
-import {DEFAULT_AWAY} from "./timeline";
+import {HandPen, type HandPenProps} from "../core/HandPen";
+import {DEFAULT_AWAY} from "../core/timeline";
 
 export type HighlighterSweepProps = {
   /** Top-left position of the highlight strip inside the parent, in px. */

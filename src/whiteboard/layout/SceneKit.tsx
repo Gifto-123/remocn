@@ -1,11 +1,11 @@
 import React from "react";
 import {AbsoluteFill, Sequence, useCurrentFrame} from "remotion";
-import {DrawOn} from "../DrawOn";
-import {MarkerText, type MarkerTextProps} from "../MarkerText";
-import {NumberCounter, type NumberCounterProps} from "../NumberCounter";
-import {CANVAS_PRESETS} from "../presets";
-import type {PlannedSlot} from "../handPlan";
-import {EDITORIAL_FONTS, EDITORIAL_PALETTE, beatEnvelope} from "./EditorialCard";
+import {DrawOn} from "../core/DrawOn";
+import {MarkerText, type MarkerTextProps} from "../core/MarkerText";
+import {NumberCounter, type NumberCounterProps} from "../data/NumberCounter";
+import {CANVAS_PRESETS} from "../core/presets";
+import type {PlannedSlot} from "../core/handPlan";
+import {EDITORIAL_FONTS, EDITORIAL_PALETTE, beatEnvelope} from "../core/theme";
 
 /**
  * Shared scene helpers for the locked 9:16 canvas (1080×1920).
