@@ -8,7 +8,7 @@
 - Study style references in `public/assets/reference-imgs/` before proposing visuals.
 - Assume required images are already generated and placed in `public/assets/<scene>/`; inspect and use them.
 - Only generate Google Flow prompts when explicitly requested, using exactly: `(image 1 detailed prompt, image 2 detailed prompt, image 3 detailed prompt)`.
-- Compose with available shared whiteboard/editorial components from `src/whiteboard/`.
+- Compose with shared components via category barrels: `from "../whiteboard/<category>"` (see Component map). Preview any component in `src/compositions/showcase/`.
 - Implement the scene at `src/compositions/<scene>.tsx`, then register it in `src/Root.tsx`.
 - Verify with `pnpm lint` and `pnpm build`; keep all work scoped to the active scene.
 
@@ -71,7 +71,7 @@ Every beat uses exactly one of four visual types. Classify each beat from its na
 ### B. Animated financial data
 
 - Use for: stock movements, revenue, earnings, market capitalization, comparisons, statistics.
-- Build in code with `src/whiteboard/` primitives (`Charts`, `CandlestickChart`, `NumberCounter`, `ComparisonTable`, `MoneyFlow`). Exact figures come from code, never from images. No AI images.
+- Build in code with `src/whiteboard/` primitives from `whiteboard/data` (`HandBarChart`, `HandLineChart`, `CandlestickChart`, `NumberCounter`, `ComparisonTable`, `MoneyFlow`). Exact figures come from code, never from images. No AI images.
 
 ### C. Editorial illustrations
 
@@ -93,7 +93,6 @@ Remotion + React + TypeScript video project. Keep repository exploration focused
 - `src/compositions/` — individual video compositions and demos; add new scenes here.
 - `src/whiteboard/` — reusable components, one folder per category (see Component map). `src/whiteboard/index.ts` is the stable root barrel; `src/whiteboard/categories.ts` is the category registry.
 - `src/Root.tsx` — Remotion composition registry/entry point. Register compositions here with `<Composition />`.
-- `src/Composition.tsx` — current shared whiteboard demo constants and composition implementation.
 - `src/compositions/showcase/` — live demo of every component (`ComponentShowcase` + one composition per component in Studio, grouped by category).
 
 ## Component map
