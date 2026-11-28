@@ -249,6 +249,22 @@ export {
   type Stereo,
   type WhooshOpts,
 } from "./audio/sfxEngine";
+export {
+  buildShortTrace,
+  cueAt,
+  duckStereo,
+  handPlanSfx,
+  mergeSfx,
+  wordSpansFromWhisper,
+  type DrawSpan,
+  type DuckOptions,
+  type HandPlanSfxOptions,
+  type SfxCue,
+  type ShortSfx,
+  type ShortTraceOptions,
+  type Span,
+} from "./audio/shortSfx";
+export {ShortAudio, type ShortAudioProps} from "./audio/ShortAudio";
 // fonts.ts is NOT re-exported on purpose: it needs @remotion/google-fonts.
 
 export {RoundedFrame, roundedFrameDuration, type RoundedFrameProps} from "./annotations/RoundedFrame";
